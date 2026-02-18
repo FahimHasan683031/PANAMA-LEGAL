@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\Fahim\\Projects\\PANAMA-LEGAL\\logs\\winston\\successes\\.c9c7ff7b003a597b88d01d951b3fc2d4d802238d-audit.json",
+    "files": [
+        {
+            "date": 1771409797904,
+            "name": "D:\\Fahim\\Projects\\PANAMA-LEGAL\\logs\\winston\\successes\\sg-2026-02-18-16-success.log",
+            "hash": "8db774d65a9f0b383eabb76f34d72cfb04b40d1cb0e221f3f94fc9294244f965"
+        }
+    ],
+    "hashType": "sha256"
+}
