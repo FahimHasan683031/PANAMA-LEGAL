@@ -13,6 +13,7 @@ type IFolderName =
   | 'logo'
   | 'lostImage'
   | 'shippingLabel'
+  | 'file'
 
 interface ProcessedFiles {
   [key: string]: string | string[] | undefined
@@ -25,6 +26,7 @@ const uploadFields = [
   { name: 'logo', maxCount: 1 },
   { name: 'lostImage', maxCount: 4 },
   { name: 'shippingLabel', maxCount: 1 },
+  { name: 'file', maxCount: 1 },
 ] as const
 
 export const fileAndBodyProcessorUsingDiskStorage = () => {
@@ -69,6 +71,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
           'image/jpg',
           'application/pdf',
         ],
+        file: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
       };
 
       const fieldType = file.fieldname as IFolderName;
@@ -177,6 +180,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
           ...(processedFiles.lostImage && {
             images: processedFiles.lostImage,
           }),
+          ...(processedFiles.file && { file: processedFiles.file }),
         };
 
         next();

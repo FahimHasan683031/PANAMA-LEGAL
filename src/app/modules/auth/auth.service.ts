@@ -349,10 +349,10 @@ const getAccessToken = async (token: string) => {
       config.jwt.jwt_refresh_secret as string,
     )
 
-    const { userId, role } = decodedToken
+    const { authId, role } = decodedToken
 
     const tokens = AuthHelper.createToken(
-      userId,
+      authId,
       role,
       decodedToken.fullName,
       decodedToken.email,
@@ -370,76 +370,6 @@ const getAccessToken = async (token: string) => {
 }
 
 
-
-const resendOtpToPhoneOrEmail = async (
-  authType: 'resetPassword' | 'createAccount',
-  email?: string,
-  phone?: string,
-) => {
-  const query = email ? { email: email } : { phone: phone }
-  const isUserExist = await User.findOne({
-    ...query,
-    status: { $in: [USER_STATUS.ACTIVE, USER_STATUS.RESTRICTED] },
-  }).select('+authentication')
-
-  if (!isUserExist) {
-    throw new ApiError(
-      StatusCodes.BAD_REQUEST,
-      `No account found with this ${email ? 'email' : 'phone'} `,
-    )
-  }
-
-  // Check the request count
-  const { authentication } = isUserExist
-  if (authentication?.requestCount! >= 5) {
-    throw new ApiError(
-      StatusCodes.BAD_REQUEST,
-      'You have exceeded the maximum number of requests. Please try again later.',
-    )
-  }
-
-  const otp = generateOtp()
-  const updatedAuthentication = {
-    ...authentication,
-    oneTimeCode: otp,
-    latestRequestAt: new Date(),
-    requestCount: authentication?.requestCount! + 1,
-    expiresAt: new Date(Date.now() + 5 * 60 * 1000), // 5 minutes
-    authType: authType,
-  }
-
-  // Send OTP to user
-  if (email) {
-    const forgetPasswordEmailTemplate = emailTemplate.resendOtp({
-      email: isUserExist.email,
-      name: isUserExist.fullName!,
-      otp,
-      type: authType,
-    })
-
-
-    await User.findByIdAndUpdate(
-      isUserExist._id,
-      {
-        $set: { authentication: updatedAuthentication },
-      },
-      { new: true },
-    )
-
-    await emailHelper.sendEmail(forgetPasswordEmailTemplate)
-  }
-
-  if (phone) {
-    // Implement this feature using aws sns
-    await User.findByIdAndUpdate(
-      isUserExist._id,
-      {
-        $set: { authentication: updatedAuthentication },
-      },
-      { new: true },
-    )
-  }
-}
 
 const deleteAccount = async (user: JwtPayload, password: string) => {
   const { authId } = user
@@ -584,7 +514,6 @@ export const AuthServices = {
   verifyAccount,
   getAccessToken,
 
-  resendOtpToPhoneOrEmail,
   deleteAccount,
   resendOtp,
   changePassword,

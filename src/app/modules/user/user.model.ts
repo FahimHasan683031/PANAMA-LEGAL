@@ -202,10 +202,5 @@ UserSchema.pre("save", async function (next) {
     }
 });
 
-// Indexes
-UserSchema.index({ email: 1 });
-UserSchema.index({ phoneNumber: 1 });
-UserSchema.index({ role: 1 });
-UserSchema.index({ identityNumber: 1 });
 
 export const User = mongoose.model<IUser, UserModel>("User", UserSchema);

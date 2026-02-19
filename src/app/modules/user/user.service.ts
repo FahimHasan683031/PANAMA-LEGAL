@@ -11,7 +11,7 @@ import config from '../../../config'
 
 const getAllUsers = async (query: Record<string, unknown>) => {
     const userQueryBuilder = new QueryBuilder(User.find().select('-password -authentication'), query)
-        .search(['email', 'firstName', 'lastName', 'phoneNumber'])
+        .search(['email', 'fullName', 'phoneNumber'])
         .filter()
         .sort()
         .fields()
@@ -90,7 +90,9 @@ const deleteMyAccount = async (user: JwtPayload) => {
         )
     }
 
-    await User.findByIdAndDelete(isExistUser._id)
+    await User.findByIdAndUpdate(isExistUser._id, {
+        $set: { status: USER_STATUS.DELETED },
+    })
 
     return 'Account deleted successfully'
 }

@@ -137,7 +137,7 @@ const createUserZodSchema = z.object({
     email: z.string({ required_error: 'Email is required' }).email(),
     password: z.string({ required_error: 'Password is required' }).min(6),
     fullName: z.string({ required_error: 'Full Name is required' }).optional(),
-    phone: z.string({ required_error: 'Phone is required' }).optional(),
+    phoneNumber: z.string({ required_error: 'Phone is required' }).optional(),
     address: z.string().optional(),
     role: z.enum(
       [

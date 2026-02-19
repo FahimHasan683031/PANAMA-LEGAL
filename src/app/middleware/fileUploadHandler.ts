@@ -32,6 +32,9 @@ const fileUploadHandler = () => {
                 case 'media':
                     uploadDir = path.join(baseUploadDir, 'media');
                     break;
+                case 'file':
+                    uploadDir = path.join(baseUploadDir, 'file');
+                    break;
                 default:
                     throw new ApiError(StatusCodes.BAD_REQUEST, 'File is not supported');
             }
@@ -77,6 +80,16 @@ const fileUploadHandler = () => {
             } else {
                 cb(new ApiError(StatusCodes.BAD_REQUEST, 'Only .png file supported'))
             }
+        } else if (file.fieldname === 'file') {
+            if (
+                file.mimetype === 'application/pdf' ||
+                file.mimetype === 'application/msword' ||
+                file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ) {
+                cb(null, true);
+            } else {
+                cb(new ApiError(StatusCodes.BAD_REQUEST, 'Only .pdf, .doc, .docx file supported'))
+            }
         }
 
         else {
@@ -88,6 +101,7 @@ const fileUploadHandler = () => {
         .fields([
             { name: 'image', maxCount: 3 },
             { name: 'media', maxCount: 2 },
+            { name: 'file', maxCount: 1 },
         ]);
     return upload;
 
