@@ -60,7 +60,8 @@ const loginZodSchema = z.object({
       .refine(value => !value || /^\+?[1-9]\d{1,14}$/.test(value), {
         message: 'Invalid phone number format',
       }),
-    deviceToken: z.string().min(1).optional(),
+    fcmToken: z.string().min(1).optional(),
+
     password: z.string({ message: 'Credentials are required' }).min(6, { message: 'Invalid Credentials' }),
   }),
 })
@@ -135,18 +136,22 @@ const createUserZodSchema = z.object({
   body: z.object({
     email: z.string({ required_error: 'Email is required' }).email(),
     password: z.string({ required_error: 'Password is required' }).min(6),
-    name: z.string({ required_error: 'Name is required' }).optional(),
+    fullName: z.string({ required_error: 'Full Name is required' }).optional(),
     phone: z.string({ required_error: 'Phone is required' }).optional(),
     address: z.string().optional(),
     role: z.enum(
       [
         USER_ROLES.ADMIN,
-        USER_ROLES.USER,
+        USER_ROLES.CITIZEN,
+        USER_ROLES.LAWYER,
+        USER_ROLES.EXPERT,
+        USER_ROLES.STUDENT,
       ],
       {
-        message: 'Role must be one of admin, user',
+        message: 'Role must be one of admin, citizen, lawyer, expert, student',
       },
     ),
+
   }),
 })
 

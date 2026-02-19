@@ -5,14 +5,15 @@ import { NotificationController } from './notification.controller';
 const router = express.Router();
 
 router.get('/',
-    auth(USER_ROLES.USER, USER_ROLES.ADMIN),
+    auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
     NotificationController.getNotificationFromDB
 );
 
 router.get('/unread-count',
-    auth(USER_ROLES.USER, USER_ROLES.ADMIN),
+    auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
     NotificationController.getUnreadCount
 );
+
 
 router.post('/test-push', NotificationController.sendTestPushNotification);
 

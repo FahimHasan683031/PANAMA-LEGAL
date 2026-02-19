@@ -10,8 +10,9 @@ router.get("/",
 );
 
 router.get("/my-plan",
-    auth(USER_ROLES.USER),
+    auth(USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
     SubscriptionController.subscriptionDetails
 );
+
 
 export const SubscriptionRoutes = router;

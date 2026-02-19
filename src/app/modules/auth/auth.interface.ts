@@ -1,5 +1,6 @@
 import { Types } from "mongoose"
-import { USER_ROLES } from "../user/user.interface"
+import { USER_ROLES } from "../../../enum/user"
+
 
 export type IEmailOrPhoneOtpVerification = {
     oneTimeCode: string
@@ -35,8 +36,9 @@ export type IAuthResponse = {
     userInfo?: {
         id: Types.ObjectId
         role: USER_ROLES
-        name: string
+        fullName: string
         email: string
         image?: string
     }
+
 }

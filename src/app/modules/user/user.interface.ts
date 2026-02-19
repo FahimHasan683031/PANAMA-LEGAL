@@ -1,35 +1,53 @@
 import { Model, Types } from "mongoose";
 import { USER_ROLES, USER_STATUS } from "../../../enum/user";
-export { USER_ROLES, USER_STATUS };
 
-type IAuthentication = {
-    restrictionLeftAt: Date | null
-    resetPassword: boolean
-    wrongLoginAttempts: number
-    passwordChangedAt?: Date
-    oneTimeCode: string
-    latestRequestAt: Date
-    expiresAt?: Date
-    requestCount?: number
-    authType?: 'createAccount' | 'resetPassword'
-}
+export type IAuthentication = {
+    restrictionLeftAt: Date | null;
+    resetPassword: boolean;
+    wrongLoginAttempts: number;
+    passwordChangedAt?: Date;
+    oneTimeCode: string;
+    latestRequestAt: Date;
+    expiresAt?: Date;
+    requestCount?: number;
+    authType?: 'createAccount' | 'resetPassword';
+};
 
 export type IUser = {
     _id: Types.ObjectId;
+    fullName?: string;
     email: string;
     image?: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    phoneNumber: string;
     status: USER_STATUS;
     verified: boolean;
     role: USER_ROLES;
     authentication: IAuthentication;
-    deviceToken?: string;
     fcmToken?: string;
-    fullName?: string;
+    
+    // Citizen specific fields
+    residentialArea?: string;
+    dateOfBirth?: Date;
+    exactAddress?: string;
+
+    // Lawyer specific fields
+    workArea?: string;
+    identityNumber?: string;
+    suitabilityCertificate?: string[];
+
+    // Expert specific fields
+    identityDoc?: string;
+    technicalSpecialty?: string;
+
+    // Student specific fields
+    university?: string;
+    currentYear?: number;
+    studentIdOrEnrollmentProof?: string;
 };
 
 export type UserModel = {
     isPasswordMatched: (givenPassword: string, savedPassword: string) => Promise<boolean>;
+    isEmailExists: (email: string) => Promise<boolean>;
+    isPhoneExists: (phone: string) => Promise<boolean>;
 } & Model<IUser>;

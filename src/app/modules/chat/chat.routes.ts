@@ -8,7 +8,7 @@ const router = express.Router();
 // Create a regular chat between users
 router.post(
   "/",
-  auth(USER_ROLES.USER, USER_ROLES.ADMIN),
+  auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   async (req, res, next) => {
     try {
       req.body = {
@@ -27,7 +27,7 @@ router.post(
 // Get all chats for current user
 router.get(
   "/",
-  auth(USER_ROLES.USER, USER_ROLES.ADMIN),
+  auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   ChatController.getChat
 );
 
@@ -35,8 +35,9 @@ router.get(
 // Delete a chat
 router.delete(
   "/:id",
-  auth(USER_ROLES.USER, USER_ROLES.ADMIN),
+  auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   ChatController.deleteChat
 );
+
 
 export const ChatRoutes = router;

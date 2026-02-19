@@ -8,6 +8,7 @@ export type ILoginData = {
   email?: string
   phone?: string
   deviceToken?: string
+  fcmToken?: string
 }
 
 export type IAuthResetPassword = {

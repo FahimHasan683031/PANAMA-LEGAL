@@ -1,15 +1,16 @@
 import { Request, Response } from 'express'
 import catchAsync from '../../../shared/catchAsync'
 import { AuthServices } from './auth.service'
+import { LoginService } from './login.service'
 import sendResponse from '../../../shared/sendResponse'
 import { StatusCodes } from 'http-status-codes'
 import config from '../../../config'
 
-const customLogin = catchAsync(async (req: Request, res: Response) => {
+const login = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body
 
-  const result = await AuthServices.login(loginData)
-  const { status, message, accessToken, refreshToken, role, userInfo } = result
+  const result = await LoginService.login(loginData)
+  const { status, message, accessToken, refreshToken, userInfo } = result
   if (refreshToken) {
     res.cookie('refreshToken', refreshToken, {
       secure: config.node_env === 'production',
@@ -28,14 +29,14 @@ const customLogin = catchAsync(async (req: Request, res: Response) => {
 const adminLogin = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body
 
-  const result = await AuthServices.adminLogin(loginData)
-  const { status, message, accessToken, refreshToken, role } = result
+  const result = await LoginService.adminLogin(loginData);
+  const { status, message, accessToken, refreshToken, role, userInfo } = result
 
   sendResponse(res, {
     statusCode: status,
     success: true,
     message: message,
-    data: { accessToken, refreshToken, role },
+    data: { accessToken, refreshToken, role, userInfo },
   })
 })
 
@@ -160,7 +161,7 @@ export const AuthController = {
   forgetPassword,
   resetPassword,
   verifyAccount,
-  login: customLogin,
+  login,
   getAccessToken,
   resendOtp,
   changePassword,

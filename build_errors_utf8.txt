@@ -1,0 +1,6 @@
+﻿src/app/modules/auth/auth.interface.ts(2,10): error TS2459: Module '"../user/user.interface"' declares 'USER_ROLES' locally, but it is not exported.
+src/app/modules/user/user.model.ts(3,17): error TS2459: Module '"./user.interface"' declares 'USER_ROLES' locally, but it is not exported.
+src/app/modules/user/user.model.ts(3,29): error TS2459: Module '"./user.interface"' declares 'USER_STATUS' locally, but it is not exported.
+src/app/modules/user/user.validation.ts(2,10): error TS2459: Module '"./user.interface"' declares 'USER_ROLES' locally, but it is not exported.
+src/app/modules/user/user.validation.ts(2,22): error TS2459: Module '"./user.interface"' declares 'USER_STATUS' locally, but it is not exported.
+src/interfaces/response.ts(2,10): error TS2459: Module '"../app/modules/user/user.interface"' declares 'USER_ROLES' locally, but it is not exported.

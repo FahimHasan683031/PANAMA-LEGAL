@@ -1,6 +1,9 @@
 export enum USER_ROLES {
-    ADMIN = "admin",
-    USER = "user"
+    ADMIN = 'admin',
+    CITIZEN = 'citizen',
+    LAWYER = 'lawyer',
+    EXPERT = 'expert',
+    STUDENT = 'student',
 }
 
 export enum USER_STATUS {

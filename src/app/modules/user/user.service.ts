@@ -9,36 +9,35 @@ import QueryBuilder from '../../builder/QueryBuilder'
 import config from '../../../config'
 
 
-const getAllUser = async (query: Record<string, unknown>) => {
+const getAllUsers = async (query: Record<string, unknown>) => {
     const userQueryBuilder = new QueryBuilder(User.find().select('-password -authentication'), query)
+        .search(['email', 'firstName', 'lastName', 'phoneNumber'])
         .filter()
         .sort()
         .fields()
         .paginate()
 
-
-    const users = await userQueryBuilder.modelQuery.lean()
-    const paginationInfo = await userQueryBuilder.getPaginationInfo()
-
-    const totalUsers = await User.countDocuments()
-    const staticData = { totalUsers }
+    const users = await userQueryBuilder.modelQuery
+    const meta = await userQueryBuilder.getPaginationInfo()
 
     return {
         users,
-        staticData,
-        meta: paginationInfo,
+        meta,
     }
 }
 
 const getSingleUser = async (id: string) => {
     const result = await User.findById(id).select('-password -authentication')
+    if (!result) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'User not found')
+    }
     return result
 }
 
 // delete User
 const deleteUser = async (id: string) => {
-    const user = await User.findById(id)
-    if (!user) {
+    const isExistUser = await User.findById(id)
+    if (!isExistUser) {
         throw new ApiError(StatusCodes.NOT_FOUND, 'User not found')
     }
 
@@ -59,8 +58,8 @@ const updateProfile = async (
     const updatedUser = await User.findOneAndUpdate(
         { _id: user.authId, status: { $ne: USER_STATUS.DELETED } },
         payload,
-        { new: true },
-    )
+        { new: true, runValidators: true },
+    ).select('-password -authentication')
 
     if (!updatedUser) {
         throw new ApiError(StatusCodes.BAD_REQUEST, 'Failed to update profile')
@@ -70,15 +69,15 @@ const updateProfile = async (
 }
 
 const getProfile = async (user: JwtPayload) => {
-    const isExistUser = await User.findById(user.authId).lean().select('-password -authentication')
-    if (!isExistUser) {
+    const result = await User.findById(user.authId).select('-password -authentication')
+    if (!result) {
         throw new ApiError(
             StatusCodes.NOT_FOUND,
             'The requested profile not found or deleted.',
         )
     }
 
-    return isExistUser
+    return result
 }
 
 
@@ -98,9 +97,10 @@ const deleteMyAccount = async (user: JwtPayload) => {
 
 export const UserServices = {
     updateProfile,
-    getAllUser,
+    getAllUsers,
     getSingleUser,
     deleteUser,
     getProfile,
     deleteMyAccount,
 }
+

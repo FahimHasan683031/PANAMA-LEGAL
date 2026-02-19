@@ -1,5 +1,6 @@
 import { Types } from "mongoose"
-import { USER_ROLES } from "../app/modules/user/user.interface"
+import { USER_ROLES } from "../enum/user"
+
 
 export type IGenericResponse<T> = {
   meta: {
@@ -25,11 +26,11 @@ export type ILoginResponse = {
   message?: string
   nextStep?: string
   role?: string
-    userInfo?: {
-        id: Types.ObjectId
-        role: USER_ROLES
-        name: string
-        email: string
-        image?: string
-    }
+  userInfo?: {
+    id: Types.ObjectId
+    role: USER_ROLES
+    name: string
+    email: string
+    image?: string
+  }
 }

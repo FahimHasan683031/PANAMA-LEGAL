@@ -1,37 +1,42 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import { IUser, USER_STATUS, UserModel } from "./user.interface";
+import { IUser, UserModel } from "./user.interface";
 import { StatusCodes } from "http-status-codes";
 import ApiError from "../../../errors/ApiError";
 import config from "../../../config";
+import { USER_ROLES, USER_STATUS } from "../../../enum/user";
 
 const UserSchema = new Schema(
     {
+        fullName: {
+            type: String,
+            trim: true,
+        },
         email: {
             type: String,
             required: true,
             unique: true,
-        },
-        password: {
-            type: String,
-            required: true,
+            lowercase: true,
+            trim: true,
         },
         image: {
             type: String,
             default: "",
         },
-        firstName: {
+        password: {
             type: String,
             required: true,
         },
-        lastName: {
+        phoneNumber: {
             type: String,
             required: true,
+            unique: true,
+            trim: true,
         },
         status: {
             type: String,
-            enum: ["active", "restricted", "deleted"],
-            default: "active",
+            enum: Object.values(USER_STATUS),
+            default: USER_STATUS.ACTIVE,
         },
         verified: {
             type: Boolean,
@@ -39,8 +44,8 @@ const UserSchema = new Schema(
         },
         role: {
             type: String,
-            enum: ["admin", "user"],
-            default: "user",
+            enum: Object.values(USER_ROLES),
+            required: true,
         },
         authentication: {
             restrictionLeftAt: {
@@ -74,30 +79,40 @@ const UserSchema = new Schema(
                 enum: ['createAccount', 'resetPassword'],
             },
         },
-        deviceToken: {
-            type: String,
-            default: "",
-        },
         fcmToken: {
             type: String,
             default: "",
         },
+        
+        // Citizen fields
+        residentialArea: String,
+        dateOfBirth: Date,
+        exactAddress: String,
+        
+        // Lawyer fields
+        workArea: String,
+        identityNumber: {
+            type: String,
+            sparse: true,
+            unique: true,
+        },
+        suitabilityCertificate: [String],
+        
+        // Expert fields
+        identityDoc: String,
+        technicalSpecialty: String,
+        
+        // Student fields
+        university: String,
+        currentYear: Number,
+        studentIdOrEnrollmentProof: String,
     },
     {
         timestamps: true,
-        toJSON: {
-            virtuals: true,
-        },
-        toObject: {
-            virtuals: true,
-        },
     }
 );
 
-UserSchema.virtual('fullName').get(function () {
-    return `${this.firstName} ${this.lastName}`;
-});
-
+// Static methods
 UserSchema.statics.isPasswordMatched = async function (
     givenPassword: string,
     savedPassword: string
@@ -105,6 +120,23 @@ UserSchema.statics.isPasswordMatched = async function (
     return bcrypt.compare(givenPassword, savedPassword);
 };
 
+UserSchema.statics.isEmailExists = async function (email: string) {
+    const user = await this.findOne({ 
+        email: email.toLowerCase(),
+        status: { $ne: USER_STATUS.DELETED }
+    });
+    return !!user;
+};
+
+UserSchema.statics.isPhoneExists = async function (phone: string) {
+    const user = await this.findOne({ 
+        phoneNumber: phone,
+        status: { $ne: USER_STATUS.DELETED }
+    });
+    return !!user;
+};
+
+// Pre-save middleware
 UserSchema.pre("save", async function (next) {
     try {
         if (this.isModified("email")) {
@@ -123,6 +155,40 @@ UserSchema.pre("save", async function (next) {
                 );
             }
         }
+
+        if (this.isModified("phoneNumber")) {
+            const isExist = await User.findOne({
+                phoneNumber: this.phoneNumber,
+                status: { $in: [USER_STATUS.ACTIVE, USER_STATUS.RESTRICTED] },
+                _id: { $ne: this._id },
+            });
+
+            if (isExist) {
+                return next(
+                    new ApiError(
+                        StatusCodes.BAD_REQUEST,
+                        "An account with this phone number already exists"
+                    )
+                );
+            }
+        }
+
+        if (this.isModified("identityNumber") && this.identityNumber) {
+            const isExist = await User.findOne({
+                identityNumber: this.identityNumber,
+                _id: { $ne: this._id },
+            });
+
+            if (isExist) {
+                return next(
+                    new ApiError(
+                        StatusCodes.BAD_REQUEST,
+                        "This identity number already exists"
+                    )
+                );
+            }
+        }
+
         if (this.isModified("password")) {
             this.password = await bcrypt.hash(
                 this.password,
@@ -135,5 +201,11 @@ UserSchema.pre("save", async function (next) {
         next(error as Error);
     }
 });
+
+// Indexes
+UserSchema.index({ email: 1 });
+UserSchema.index({ phoneNumber: 1 });
+UserSchema.index({ role: 1 });
+UserSchema.index({ identityNumber: 1 });
 
 export const User = mongoose.model<IUser, UserModel>("User", UserSchema);

@@ -3,15 +3,11 @@ import { IAuthResponse, IResetPassword } from './auth.interface'
 import { User } from '../user/user.model'
 import ApiError from '../../../errors/ApiError'
 import { USER_ROLES, USER_STATUS } from '../../../enum/user'
-import { AuthHelper } from './auth.helper'
-import {
-  AuthCommonServices,
-  authResponse,
-} from './common'
-import { ILoginData } from '../../../interfaces/auth'
+import { AuthHelper, authResponse } from './auth.helper'
 import { emailTemplate } from '../../../shared/emailTemplate'
 import { emailHelper } from '../../../helpers/emailHelper'
 import { JwtPayload } from 'jsonwebtoken'
+
 import { jwtHelper } from '../../../helpers/jwtHelper'
 import config from '../../../config'
 import bcrypt from 'bcrypt'
@@ -65,12 +61,13 @@ export const createUser = async (payload: IUser) => {
     // 3. Send OTP email
     setTimeout(() => {
       const createAccountEmail = emailTemplate.createAccount({
-        name: `${payload.firstName} ${payload.lastName}`,
+        name: payload.fullName!,
         email: payload.email,
         otp,
       })
       emailHelper.sendEmail(createAccountEmail)
     }, 0)
+
 
     // 4. Create User
     const user = await User.create(
@@ -79,8 +76,9 @@ export const createUser = async (payload: IUser) => {
           ...payload,
           password: payload.password,
           authentication,
-          role: payload.role || USER_ROLES.USER,
+          role: payload.role,
         },
+
       ],
       { session },
     )
@@ -102,82 +100,8 @@ export const createUser = async (payload: IUser) => {
   }
 }
 
-const login = async (payload: ILoginData): Promise<IAuthResponse> => {
-  const { email, phone } = payload
-  const query = email ? { email: email.toLowerCase().trim() } : { phone: phone }
-
-  const isUserExist = await User.findOne({
-    ...query,
-    status: { $in: [USER_STATUS.ACTIVE, USER_STATUS.RESTRICTED] },
-  })
-    .select('+password +authentication')
-    .lean()
-
-  if (!isUserExist) {
-    throw new ApiError(
-      StatusCodes.BAD_REQUEST,
-      `No account found with this ${email ? 'email' : 'phone'}`,
-    )
-  }
-
-  const result = await AuthCommonServices.handleLoginLogic(payload, isUserExist)
-  return result
-}
-
-const adminLogin = async (payload: ILoginData): Promise<IAuthResponse> => {
-  const { email, phone } = payload
-  const query = email ? { email: email.trim().toLowerCase() } : { phone: phone }
-
-  const isUserExist = await User.findOne({
-    ...query,
-  })
-    .select('+password +authentication')
-    .lean()
-
-  if (!isUserExist) {
-    throw new ApiError(
-      StatusCodes.BAD_REQUEST,
-      `No account found with this ${email ? 'email' : 'phone'}`,
-    )
-  }
-
-  if (isUserExist.role !== USER_ROLES.ADMIN) {
-    throw new ApiError(
-      StatusCodes.BAD_REQUEST,
-      'You are not authorized to login as admin',
-    )
-  }
-
-  const isPasswordMatch = await AuthHelper.isPasswordMatched(
-    payload.password,
-    isUserExist.password as string,
-  )
-
-  if (!isPasswordMatch) {
-    throw new ApiError(
-      StatusCodes.UNAUTHORIZED,
-      'Please try again with correct credentials.',
-    )
-  }
-
-  // Create tokens
-  const tokens = AuthHelper.createToken(
-    isUserExist._id,
-    isUserExist.role,
-    `${isUserExist.firstName} ${isUserExist.lastName}`,
-    isUserExist.email,
-  )
-
-  return authResponse(
-    StatusCodes.OK,
-    `Welcome back ${isUserExist.firstName}`,
-    isUserExist.role,
-    tokens.accessToken,
-    tokens.refreshToken,
-  )
-}
-
 const forgetPassword = async (email?: string, phone?: string) => {
+
   const query = email
     ? { email: email.toLocaleLowerCase().trim() }
     : { phone: phone }
@@ -217,7 +141,7 @@ const forgetPassword = async (email?: string, phone?: string) => {
   // Send OTP to user
   if (email) {
     const forgetPasswordEmailTemplate = emailTemplate.resetPassword({
-      name: `${isUserExist.firstName} ${isUserExist.lastName}`,
+      name: isUserExist.fullName!,
       email: isUserExist.email,
       otp,
     })
@@ -351,20 +275,20 @@ const verifyAccount = async (
     const tokens = AuthHelper.createToken(
       isUserExist._id,
       isUserExist.role,
-      isUserExist.firstName + ' ' + isUserExist.lastName,
+      isUserExist.fullName,
       isUserExist.email,
     )
     const userInfo = {
       id: isUserExist._id,
       role: isUserExist.role,
-      name: `${isUserExist.firstName!} ${isUserExist.lastName!}`,
+      fullName: isUserExist.fullName!,
       email: isUserExist.email!,
       image: isUserExist.image!,
     }
 
     return authResponse(
       StatusCodes.OK,
-      `Welcome ${isUserExist.firstName} ${isUserExist.lastName} to our platform.`,
+      `Welcome ${isUserExist.fullName} to our platform.`,
       undefined,
       tokens.accessToken,
       tokens.refreshToken,
@@ -430,7 +354,7 @@ const getAccessToken = async (token: string) => {
     const tokens = AuthHelper.createToken(
       userId,
       role,
-      decodedToken.name,
+      decodedToken.fullName,
       decodedToken.email,
     )
 
@@ -461,7 +385,7 @@ const resendOtpToPhoneOrEmail = async (
   if (!isUserExist) {
     throw new ApiError(
       StatusCodes.BAD_REQUEST,
-      `No account found with this ${email ? 'email' : 'phone'}`,
+      `No account found with this ${email ? 'email' : 'phone'} `,
     )
   }
 
@@ -488,10 +412,11 @@ const resendOtpToPhoneOrEmail = async (
   if (email) {
     const forgetPasswordEmailTemplate = emailTemplate.resendOtp({
       email: isUserExist.email,
-      name: `${isUserExist.firstName} ${isUserExist.lastName}`,
+      name: isUserExist.fullName!,
       otp,
       type: authType,
     })
+
 
     await User.findByIdAndUpdate(
       isUserExist._id,
@@ -600,7 +525,7 @@ const resendOtp = async (
   if (email) {
     const forgetPasswordEmailTemplate = emailTemplate.resendOtp({
       email: email,
-      name: `${isUserExist.firstName} ${isUserExist.lastName}`,
+      name: isUserExist.fullName!,
       otp,
       type: authType,
     })
@@ -657,13 +582,12 @@ export const AuthServices = {
   forgetPassword,
   resetPassword,
   verifyAccount,
-  login,
   getAccessToken,
 
   resendOtpToPhoneOrEmail,
   deleteAccount,
   resendOtp,
   changePassword,
-  createUser,
-  adminLogin
+  createUser
 }
+

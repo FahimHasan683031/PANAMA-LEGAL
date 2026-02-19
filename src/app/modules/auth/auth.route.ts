@@ -29,28 +29,22 @@ router.post(
   AuthController.createUser,
 )
 router.post(
-  '/admin-login',
-  validateRequest(AuthValidations.loginZodSchema),
-  AuthController.adminLogin,
-)
-router.post(
   '/login',
   validateRequest(AuthValidations.loginZodSchema),
   AuthController.login,
 )
 
+router.post(
+  '/admin-login',
+  validateRequest(AuthValidations.loginZodSchema),
+  AuthController.adminLogin,
+)
 
 
 router.post(
   '/verify-account',
   validateRequest(AuthValidations.verifyAccountZodSchema),
   AuthController.verifyAccount,
-)
-
-router.post(
-  '/custom-login',
-  validateRequest(AuthValidations.loginZodSchema),
-  AuthController.login,
 )
 
 router.post(
@@ -73,17 +67,18 @@ router.post(
 
 router.post(
   '/change-password',
-  auth(USER_ROLES.ADMIN, USER_ROLES.USER),
+  auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   validateRequest(AuthValidations.changePasswordZodSchema),
   AuthController.changePassword,
 )
 
 router.delete(
   '/delete-account',
-  auth(USER_ROLES.ADMIN, USER_ROLES.USER),
+  auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   validateRequest(AuthValidations.deleteAccount),
   AuthController.deleteAccount,
 )
+
 router.post('/access-token', AuthController.getAccessToken)
 
 router.post('/logout', AuthController.logOut)

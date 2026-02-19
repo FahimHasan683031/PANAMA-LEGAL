@@ -19,13 +19,13 @@ const updateProfile = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-const getAllUser = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserServices.getAllUser(req.query)
+const getAllUsers = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserServices.getAllUsers(req.query)
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'User fetched successfully',
-    data: {...result},
+    message: 'Users fetched successfully',
+    data: result,
   })
 })
 
@@ -77,11 +77,10 @@ const deleteMyAccount = catchAsync(async (req: Request, res: Response) => {
 
 
 export const UserController = {
-  getAllUser,
+  getAllUsers,
   updateProfile,
   getSingleUser,
   deleteUser,
   getProfile,
   deleteMyAccount,
- 
 }
