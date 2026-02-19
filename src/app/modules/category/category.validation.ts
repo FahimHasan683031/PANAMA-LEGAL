@@ -1,7 +1,7 @@
 // service.validation.ts
 import { z } from "zod";
 
-// Base service validation (common for all levels)
+// Base service validation 
 const baseCategorySchema = z.object({
   name: z.string().min(1, "Category name is required"),
   image: z.string().min(1, "Image URL is required"),
@@ -11,13 +11,13 @@ const baseCategorySchema = z.object({
 // Create service validation
 export const createCategoryZod = z.object({
   body: baseCategorySchema.extend({
-    parent: z.string().optional().nullable(),
+    type: z.enum(['library', 'article'], { required_error: "Type is required" }),
   }).strict(),
 });
 
 // Update service validation
 export const updateCategoryZod = z.object({
-  body: baseCategorySchema.partial().strict(), 
+  body: baseCategorySchema.partial().strict(),
 });
 
 

@@ -13,10 +13,10 @@ const categorySchema = new Schema<ICategory>(
       type: String,
       required: true,
     },
-    parent: {
-      type: Schema.Types.ObjectId,
-      ref: 'Category',
-      default: null,
+    type: {
+      type: String,
+      enum: ['library', 'article'],
+      required: true,
     },
     isActive: {
       type: Boolean,

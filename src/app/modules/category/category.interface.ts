@@ -4,6 +4,6 @@ export interface ICategory {
   _id: Types.ObjectId;
   name: string;
   image: string;
-  parent: Types.ObjectId | null;
+  type: 'library' | 'article';
   isActive: boolean;
 }
