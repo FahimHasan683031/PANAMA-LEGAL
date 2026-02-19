@@ -1,0 +1,16 @@
+{Thu Feb 19 2026 16:00:04} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 13.142 ms
+{Thu Feb 19 2026 16:00:22} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/me 200 - 5.578 ms
+{Thu Feb 19 2026 16:01:11} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Thu Feb 19 2026 16:01:11} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Thu Feb 19 2026 16:01:11} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Thu Feb 19 2026 16:01:20} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 24.506 ms
+{Thu Feb 19 2026 16:02:26} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 9.387 ms
+{Thu Feb 19 2026 16:02:50} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 10.066 ms
+{Thu Feb 19 2026 16:04:32} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 10.220 ms
+{Thu Feb 19 2026 16:04:33} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 5.947 ms
+{Thu Feb 19 2026 16:08:51} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Thu Feb 19 2026 16:08:51} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Thu Feb 19 2026 16:08:51} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Thu Feb 19 2026 16:08:53} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Thu Feb 19 2026 16:08:53} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Thu Feb 19 2026 16:08:53} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m

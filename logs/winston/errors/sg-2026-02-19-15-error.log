@@ -1,0 +1,3 @@
+{Thu Feb 19 2026 15:43:24} [APP 🐞] error: ::ffff:10.10.7.50 - GET /favicon.ico 404 - 1.148 ms
+{Thu Feb 19 2026 15:48:22} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 400 - 18.735 ms
+{Thu Feb 19 2026 15:49:51} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 400 - 14.256 ms

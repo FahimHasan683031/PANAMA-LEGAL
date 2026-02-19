@@ -16,122 +16,53 @@ export const userSignupSchema = z.object({
         role: z.nativeEnum(USER_ROLES),
         image: z.string().optional(),
         fcmToken: z.string().optional(),
-        
+
         // Citizen fields
         residentialArea: z.string().optional(),
         dateOfBirth: z.string().optional(),
         exactAddress: z.string().optional(),
-        
+
         // Lawyer fields
         workArea: z.string().optional(),
         identityNumber: z.string().optional(),
         suitabilityCertificate: z.array(z.string()).optional(),
-        
+
         // Expert fields
         identityDoc: z.string().optional(),
         technicalSpecialty: z.string().optional(),
-        
+
         // Student fields
         university: z.string().optional(),
         currentYear: z.number().int().min(1).max(6).optional(),
         studentIdOrEnrollmentProof: z.string().optional(),
     })
-    .refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords don't match",
-        path: ["confirmPassword"],
-    })
-    .superRefine((data, ctx) => {
-        switch (data.role) {
-            case USER_ROLES.CITIZEN:
-                if (!data.residentialArea) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Residential area is required for citizens",
-                        path: ["residentialArea"]
-                    });
-                }
-                if (!data.dateOfBirth) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Date of birth is required for citizens",
-                        path: ["dateOfBirth"]
-                    });
-                }
-                if (!data.exactAddress) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Exact address is required for citizens",
-                        path: ["exactAddress"]
-                    });
-                }
-                break;
+        .refine((data) => data.password === data.confirmPassword, {
+            message: "Passwords don't match",
+            path: ["confirmPassword"],
+        })
+        .superRefine((data, ctx) => {
+            const roleFields: Record<USER_ROLES, string[]> = {
+                [USER_ROLES.ADMIN]: [],
+                [USER_ROLES.CITIZEN]: ['residentialArea', 'dateOfBirth', 'exactAddress'],
+                [USER_ROLES.LAWYER]: ['workArea', 'identityNumber', 'suitabilityCertificate'],
+                [USER_ROLES.EXPERT]: ['identityDoc', 'technicalSpecialty'],
+                [USER_ROLES.STUDENT]: ['university', 'currentYear', 'studentIdOrEnrollmentProof'],
+            };
 
-            case USER_ROLES.LAWYER:
-                if (!data.workArea) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Work area is required for lawyers",
-                        path: ["workArea"]
-                    });
-                }
-                if (!data.identityNumber) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Identity number is required for lawyers",
-                        path: ["identityNumber"]
-                    });
-                }
-                if (!data.suitabilityCertificate || data.suitabilityCertificate.length === 0) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Suitability certificate is required for lawyers",
-                        path: ["suitabilityCertificate"]
-                    });
-                }
-                break;
+            const allRoleSpecificFields = Object.values(roleFields).flat();
+            const allowedFields = roleFields[data.role] || [];
 
-            case USER_ROLES.EXPERT:
-                if (!data.identityDoc) {
+            allRoleSpecificFields.forEach(field => {
+                // If field is present but not allowed for this role
+                if (field in data && !allowedFields.includes(field)) {
                     ctx.addIssue({
                         code: z.ZodIssueCode.custom,
-                        message: "Identity document is required for experts",
-                        path: ["identityDoc"]
+                        message: `Field '${field}' is not allowed for role '${data.role}'`,
+                        path: [field]
                     });
                 }
-                if (!data.technicalSpecialty) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Technical specialty is required for experts",
-                        path: ["technicalSpecialty"]
-                    });
-                }
-                break;
-
-            case USER_ROLES.STUDENT:
-                if (!data.university) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "University is required for students",
-                        path: ["university"]
-                    });
-                }
-                if (!data.currentYear) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Current year is required for students",
-                        path: ["currentYear"]
-                    });
-                }
-                if (!data.studentIdOrEnrollmentProof) {
-                    ctx.addIssue({
-                        code: z.ZodIssueCode.custom,
-                        message: "Student ID or enrollment proof is required",
-                        path: ["studentIdOrEnrollmentProof"]
-                    });
-                }
-                break;
-        }
-    })
+            });
+        })
 });
 
 export const userLoginSchema = z.object({
@@ -149,18 +80,18 @@ export const userUpdateSchema = z.object({
         image: z.string().optional(),
         password: passwordSchema.optional(),
         fcmToken: z.string().optional(),
-        
+
         residentialArea: z.string().optional(),
         dateOfBirth: z.string().or(z.date()).optional(),
         exactAddress: z.string().optional(),
-        
+
         workArea: z.string().optional(),
         identityNumber: z.string().optional(),
         suitabilityCertificate: z.array(z.string()).optional(),
-        
+
         identityDoc: z.string().optional(),
         technicalSpecialty: z.string().optional(),
-        
+
         university: z.string().optional(),
         currentYear: z.number().int().min(1).max(6).optional(),
         studentIdOrEnrollmentProof: z.string().optional(),

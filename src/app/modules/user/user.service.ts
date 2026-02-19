@@ -55,6 +55,25 @@ const updateProfile = async (
         throw new ApiError(StatusCodes.NOT_FOUND, 'User not found or deleted.')
     }
 
+    // Role-specific field isolation
+    const roleFields: Record<string, string[]> = {
+        [USER_ROLES.ADMIN]: [],
+        [USER_ROLES.CITIZEN]: ['residentialArea', 'dateOfBirth', 'exactAddress'],
+        [USER_ROLES.LAWYER]: ['workArea', 'identityNumber', 'suitabilityCertificate'],
+        [USER_ROLES.EXPERT]: ['identityDoc', 'technicalSpecialty'],
+        [USER_ROLES.STUDENT]: ['university', 'currentYear', 'studentIdOrEnrollmentProof'],
+    };
+
+    const allRoleSpecificFields = Object.values(roleFields).flat();
+    const allowedFields = roleFields[isExistUser.role] || [];
+
+    // Filter payload to ensure no unauthorized role fields are updated
+    Object.keys(payload).forEach(key => {
+        if (allRoleSpecificFields.includes(key) && !allowedFields.includes(key)) {
+            throw new ApiError(StatusCodes.BAD_REQUEST, `Field '${key}' is not allowed for your role (${isExistUser.role})`)
+        }
+    });
+
     const updatedUser = await User.findOneAndUpdate(
         { _id: user.authId, status: { $ne: USER_STATUS.DELETED } },
         payload,

@@ -1,0 +1,3 @@
+{Thu Feb 19 2026 16:01:13} [APP 🐞] error: ::ffff:10.10.7.50 - GET /api/v1/user?role=LAWYER&searchTerm=John 500 - 8.537 ms
+{Thu Feb 19 2026 16:04:39} [APP 🐞] error: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 400 - 3.891 ms
+{Thu Feb 19 2026 16:09:52} [APP 🐞] error: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 400 - 22.574 ms
