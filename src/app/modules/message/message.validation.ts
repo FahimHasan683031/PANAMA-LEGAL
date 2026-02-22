@@ -3,14 +3,15 @@ import { MESSAGE } from '../../../enum/message';
 
 export const sendMessageZod = z.object({
     body: z.object({
-        chatId: z.string().min(1, 'Chat ID is required'),
+        chatId: z.string().optional(),
+        caseId: z.string().optional(),
         text: z.string().optional(),
         image: z.string().optional(),
         type: z.nativeEnum(MESSAGE).optional(),
     }).refine(
-        (data) => data.text || data.image,
+        (data) => (data.chatId || data.caseId) && (data.text || data.image),
         {
-            message: 'Either text or image must be provided',
+            message: 'Must provide (chatId or caseId) AND (text or image)',
         }
     ),
 });

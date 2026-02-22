@@ -1,0 +1,43 @@
+{Sun Feb 22 2026 12:17:20} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 12:17:20} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 12:17:20} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 12:17:20} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 12:18:10} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 12:18:10} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 12:18:10} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 12:18:10} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 12:18:50} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 12:18:50} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 12:18:50} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 12:18:50} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 12:19:24} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 12:19:24} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 12:19:24} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 12:19:24} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 12:20:30} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 12:20:30} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 12:20:30} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 12:20:30} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 12:24:19} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:32:29} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:33:12} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:33:32} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:34:04} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 200 - 259.537 ms
+{Sun Feb 22 2026 12:34:08} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:34:44} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/verify-account 200 - 59.906 ms
+{Sun Feb 22 2026 12:37:18} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 200 - 222.608 ms
+{Sun Feb 22 2026 12:37:24} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:37:49} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/verify-account 200 - 10.895 ms
+{Sun Feb 22 2026 12:42:08} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 200 - 260.935 ms
+{Sun Feb 22 2026 12:42:12} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:42:45} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/verify-account 200 - 8.579 ms
+{Sun Feb 22 2026 12:44:20} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 200 - 92.037 ms
+{Sun Feb 22 2026 12:45:28} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library 200 - 355.475 ms
+{Sun Feb 22 2026 12:52:29} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 200 - 241.695 ms
+{Sun Feb 22 2026 12:52:34} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:53:02} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/verify-account 200 - 12.373 ms
+{Sun Feb 22 2026 12:53:44} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/forget-password 200 - 18.756 ms
+{Sun Feb 22 2026 12:53:48} [APP 🚀] info: Mail send successfully
+{Sun Feb 22 2026 12:54:12} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/verify-account 200 - 15.499 ms
+{Sun Feb 22 2026 12:54:34} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/reset-password?token=4873282b715028c4cdccddccc102130dfc8ee3b13fb88430801e0c4001d607a1 200 - 229.831 ms
+{Sun Feb 22 2026 12:55:09} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/login 200 - 247.948 ms

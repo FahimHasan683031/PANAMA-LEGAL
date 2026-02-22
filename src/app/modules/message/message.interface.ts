@@ -3,7 +3,8 @@ import { MESSAGE } from '../../../enum/message';
 
 export type IMessage = {
   _id?: Types.ObjectId;
-  chatId: Types.ObjectId;
+  chatId?: Types.ObjectId;
+  caseId?: Types.ObjectId;
   sender: Types.ObjectId;
   text?: string;
   files?: string[];

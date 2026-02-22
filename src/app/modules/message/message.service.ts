@@ -4,84 +4,108 @@ import { IMessage } from './message.interface';
 import { Message } from './message.model';
 import { checkMongooseIDValidation } from '../../../shared/checkMongooseIDValidation';
 import { Chat } from '../chat/chat.model';
+import { Case } from '../case/case.model';
 import { MESSAGE } from '../../../enum/message';
 import { JwtPayload } from 'jsonwebtoken';
 import ApiError from '../../../errors/ApiError';
 import { StatusCodes } from 'http-status-codes';
 import { PushNotificationService } from '../notification/pushNotification.service';
 import { User } from '../user/user.model';
-import { ADMIN_ROLES } from '../../../enum/user';
 
 const sendMessageToDB = async (payload: any): Promise<IMessage> => {
   // Initialize readBy with sender's ID
   payload.readBy = [payload.sender];
 
+  let session: any;
 
-  const isExistChat = await Chat.findById(payload.chatId);
-  if (!isExistChat) {
-    throw new ApiError(StatusCodes.BAD_REQUEST, "Chat doesn't exist!");
-  }
-
-  if (!isExistChat.participants.some(p => p.toString() === payload.sender.toString())) {
-    throw new ApiError(StatusCodes.BAD_REQUEST, "You are not a participant!");
+  if (payload.chatId) {
+    session = await Chat.findById(payload.chatId);
+    if (!session) {
+      throw new ApiError(StatusCodes.BAD_REQUEST, "Chat doesn't exist!");
+    }
+    if (!session.participants.some((p: any) => p.toString() === payload.sender.toString())) {
+      throw new ApiError(StatusCodes.BAD_REQUEST, "You are not a participant!");
+    }
+  } else if (payload.caseId) {
+    session = await Case.findById(payload.caseId);
+    if (!session) {
+      throw new ApiError(StatusCodes.BAD_REQUEST, "Case doesn't exist!");
+    }
+    // For cases, participants are citizen and lawyer
+    if (session.citizen.toString() !== payload.sender.toString() && session.lawyer.toString() !== payload.sender.toString()) {
+      throw new ApiError(StatusCodes.BAD_REQUEST, "You are not a participant of this case!");
+    }
+  } else {
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Either chatId or caseId must be provided!");
   }
 
   // Save to DB
   const response = await Message.create(payload);
 
-  // Update chat's lastMessage and lastMessageAt
-  await Chat.findByIdAndUpdate(payload.chatId, {
-    lastMessage: response._id,
-    lastMessageAt: new Date()
-  });
+  // Update session's lastMessage and lastMessageAt
+  if (payload.chatId) {
+    await Chat.findByIdAndUpdate(payload.chatId, {
+      lastMessage: response._id,
+      lastMessageAt: new Date()
+    });
+  } else if (payload.caseId) {
+    await Case.findByIdAndUpdate(payload.caseId, {
+      lastMessage: response._id,
+      lastMessageAt: new Date()
+    });
+  }
 
   //@ts-ignore
   const io = global.io;
-  if (io && payload.chatId) {
-    // Send message to specific Chat room
-    io.emit(`getMessage::${payload?.chatId}`, response);
+  const sessionId = payload.chatId || payload.caseId;
+  if (io && sessionId) {
+    // Send message to specific room
+    io.emit(`getMessage::${sessionId}`, response);
 
-    // Notify ALL participants to update their chat list (real-time sorting)
-    isExistChat.participants.forEach((participantId: any) => {
+    // Notify participants to update their list
+    const participants = payload.chatId
+      ? session.participants
+      : [session.citizen, session.lawyer];
+
+    participants.forEach((participantId: any) => {
       io.emit(`chatListUpdate::${participantId.toString()}`, {
         chatId: payload.chatId,
+        caseId: payload.caseId,
         lastMessage: response,
       });
     });
-
   }
 
   // Send Push Notification
   try {
-    const chatStatus = await Chat.findById(payload.chatId);
-    if (chatStatus) {
-      // Fetch sender details for better title
-      const sender = await User.findById(payload.sender).select('fullName role');
-      const title = sender?.fullName || "New Message";
-      const body = payload.text ?
-        (payload.text.length > 50 ? payload.text.substring(0, 50) + "..." : payload.text) :
-        "Sent an attachment";
+    const sender = await User.findById(payload.sender).select('fullName');
+    const title = sender?.fullName || "New Message";
+    const body = payload.text ?
+      (payload.text.length > 50 ? payload.text.substring(0, 50) + "..." : payload.text) :
+      "Sent an attachment";
 
-      // Normal Chat recipient
-      const recipientId = chatStatus.participants.find(
-        (p: any) => p.toString() !== payload.sender.toString()
-      );
+    const recipientId = payload.chatId
+      ? session.participants.find((p: any) => p.toString() !== payload.sender.toString())
+      : (session.citizen.toString() === payload.sender.toString() ? session.lawyer : session.citizen);
 
-      if (recipientId) {
-        const recipient = await User.findById(recipientId).select('fcmToken');
-        if (recipient?.fcmToken) {
-          await PushNotificationService.sendPushNotification(
-            recipient.fcmToken,
-            title,
-            body,
-            { screen: "CHAT", chatId: payload.chatId?.toString() }
-          );
-        }
+    if (recipientId) {
+      const recipient = await User.findById(recipientId).select('fcmToken');
+      if (recipient?.fcmToken) {
+        await PushNotificationService.sendPushNotification(
+          recipient.fcmToken,
+          title,
+          body,
+          {
+            screen: payload.chatId ? "CHAT" : "CASE",
+            chatId: payload.chatId?.toString(),
+            caseId: payload.caseId?.toString()
+          }
+        );
       }
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to send push notification:", error);
-    // Don't block the response if notification fails
   }
 
   return response;
@@ -93,21 +117,32 @@ const getMessageFromDB = async (
   user: JwtPayload,
   query: Record<string, any>
 ): Promise<{ messages: IMessage[], pagination: any, participant: any }> => {
-  checkMongooseIDValidation(id, "Chat");
+  checkMongooseIDValidation(id, "Session");
 
-  const isExistChat = await Chat.findById(id);
-  if (!isExistChat) {
-    throw new ApiError(StatusCodes.BAD_REQUEST, "Chat doesn't exist!");
+  let session: any = await Chat.findById(id);
+  let isCase = false;
+
+  if (!session) {
+    session = await Case.findById(id);
+    isCase = true;
   }
 
-  if (!isExistChat.participants.some(p => p.toString() === user.id.toString())) {
-    throw new Error('You are not participant of this chat')
+  if (!session) {
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Session doesn't exist!");
+  }
+
+  const isParticipant = isCase
+    ? (session.citizen.toString() === user.id || session.lawyer.toString() === user.id)
+    : session.participants.some((p: any) => p.toString() === user.id.toString());
+
+  if (!isParticipant) {
+    throw new ApiError(StatusCodes.FORBIDDEN, 'You are not participant of this chat/case');
   }
 
   // Mark messages as read for this user
   await Message.updateMany(
     {
-      chatId: new mongoose.Types.ObjectId(id),
+      $or: [{ chatId: new mongoose.Types.ObjectId(id) }, { caseId: new mongoose.Types.ObjectId(id) }],
       sender: { $ne: new mongoose.Types.ObjectId(user.id) },
       readBy: { $ne: new mongoose.Types.ObjectId(user.id) }
     },
@@ -116,8 +151,9 @@ const getMessageFromDB = async (
     }
   );
 
+  const filter = isCase ? { caseId: id } : { chatId: id };
   const result = new QueryBuilder(
-    Message.find({ chatId: id })
+    Message.find(filter)
       .populate('sender', 'fullName profilePicture')
       .sort({ createdAt: -1 }),
     query
@@ -127,15 +163,16 @@ const getMessageFromDB = async (
   const pagination = await result.getPaginationInfo();
   messages = messages.reverse();
 
-  const participant = await Chat.findById(id).populate({
-    path: 'participants',
-    select: '-_id fullName profilePicture ',
-    match: {
-      _id: { $ne: new mongoose.Types.ObjectId(user.id) }
-    }
-  });
+  let participant;
+  if (isCase) {
+    const otherId = session.citizen.toString() === user.id ? session.lawyer : session.citizen;
+    participant = await User.findById(otherId).select('fullName profilePicture role email').lean();
+  } else {
+    const otherParticipant = session.participants.find((p: any) => p.toString() !== user.id);
+    participant = await User.findById(otherParticipant).select('fullName profilePicture role email').lean();
+  }
 
-  return { messages, pagination, participant: participant?.participants[0] };
+  return { messages, pagination, participant };
 };
 
 
@@ -161,16 +198,17 @@ const updateMessageToDB = async (messageId: string, userId: string, payload: Par
   //@ts-ignore
   const io = global.io;
   if (io && updatedMessage) {
-    io.emit(`getMessage::${updatedMessage.chatId}`, updatedMessage);
+    const sessionId = updatedMessage.chatId || updatedMessage.caseId;
+    io.emit(`getMessage::${sessionId}`, updatedMessage);
   }
 
   return updatedMessage;
 };
 
-// Get unread message count for a specific chat
-const getUnreadCountForChat = async (chatId: string, userId: string): Promise<number> => {
+// Get unread message count for a specific chat/case
+const getUnreadCountForChat = async (id: string, userId: string): Promise<number> => {
   const count = await Message.countDocuments({
-    chatId: new mongoose.Types.ObjectId(chatId),
+    $or: [{ chatId: new mongoose.Types.ObjectId(id) }, { caseId: new mongoose.Types.ObjectId(id) }],
     sender: { $ne: new mongoose.Types.ObjectId(userId) },
     readBy: { $ne: new mongoose.Types.ObjectId(userId) }
   });
@@ -185,11 +223,23 @@ const getTotalUnreadCount = async (userId: string): Promise<number> => {
     participants: new mongoose.Types.ObjectId(userId)
   }).select('_id');
 
-  const chatIds = chats.map(chat => chat._id);
+  // Get all cases for this user
+  const cases = await Case.find({
+    $or: [
+      { citizen: new mongoose.Types.ObjectId(userId) },
+      { lawyer: new mongoose.Types.ObjectId(userId) }
+    ]
+  }).select('_id');
 
-  // Count unread messages across all chats
+  const chatIds = chats.map(c => c._id).filter(id => id !== undefined);
+  const caseIds = cases.map(c => c._id).filter(id => id !== undefined);
+
+  // Count unread messages across all sessions
   const count = await Message.countDocuments({
-    chatId: { $in: chatIds },
+    $or: [
+      { chatId: { $in: chatIds } },
+      { caseId: { $in: caseIds } }
+    ],
     sender: { $ne: new mongoose.Types.ObjectId(userId) },
     readBy: { $ne: new mongoose.Types.ObjectId(userId) }
   });

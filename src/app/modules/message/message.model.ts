@@ -6,8 +6,13 @@ const messageSchema = new Schema<IMessage, MessageModel>(
   {
     chatId: {
       type: Schema.Types.ObjectId,
-      required: true,
+      required: false,
       ref: 'Chat',
+    },
+    caseId: {
+      type: Schema.Types.ObjectId,
+      required: false,
+      ref: 'Case',
     },
     sender: {
       type: Schema.Types.ObjectId,

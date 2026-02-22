@@ -1,0 +1,2 @@
+{Sun Feb 22 2026 15:00:25} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/case 200 - 18.471 ms
+{Sun Feb 22 2026 15:01:01} [APP 🚀] info: ::ffff:10.10.7.50 - PATCH /api/v1/case/status/699abb22b4691c174a90d9bb 200 - 7.724 ms
