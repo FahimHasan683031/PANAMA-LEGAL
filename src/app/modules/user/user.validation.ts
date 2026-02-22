@@ -15,25 +15,6 @@ export const userSignupSchema = z.object({
         confirmPassword: z.string(),
         role: z.nativeEnum(USER_ROLES),
         image: z.string().optional(),
-
-        // Citizen fields
-        residentialArea: z.string().optional(),
-        dateOfBirth: z.string().optional(),
-        exactAddress: z.string().optional(),
-
-        // Lawyer fields
-        workArea: z.string().optional(),
-        identityNumber: z.string().optional(),
-        suitabilityCertificate: z.array(z.string()).optional(),
-
-        // Expert fields
-        identityDoc: z.array(z.string()).optional(),
-        technicalSpecialty: z.array(z.string()).optional(),
-
-        // Student fields
-        university: z.string().optional(),
-        currentYear: z.number().int().min(1).max(6).optional(),
-        studentIdOrEnrollmentProof: z.array(z.string()).optional(),
     }).strict()
 });
 
