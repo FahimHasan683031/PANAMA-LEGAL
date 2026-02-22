@@ -10,9 +10,9 @@ type IFolderName =
   | 'image'
   | 'media'
   | 'documents'
-  | 'logo'
-  | 'lostImage'
-  | 'shippingLabel'
+  | 'suitabilityCertificate'
+  | 'identityDoc'
+  | 'studentIdOrEnrollmentProof'
   | 'file'
 
 interface ProcessedFiles {
@@ -23,9 +23,9 @@ const uploadFields = [
   { name: 'image', maxCount: 1 },
   { name: 'media', maxCount: 3 },
   { name: 'documents', maxCount: 3 },
-  { name: 'logo', maxCount: 1 },
-  { name: 'lostImage', maxCount: 4 },
-  { name: 'shippingLabel', maxCount: 1 },
+  { name: 'suitabilityCertificate', maxCount: 10 },
+  { name: 'identityDoc', maxCount: 10 },
+  { name: 'studentIdOrEnrollmentProof', maxCount: 10 },
   { name: 'file', maxCount: 1 },
 ] as const
 
@@ -63,14 +63,9 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
         image: ['image/jpeg', 'image/png', 'image/jpg'],
         media: ['video/mp4', 'audio/mpeg'],
         documents: ['application/pdf'],
-        logo: ['image/jpeg', 'image/png', 'image/jpg'],
-        lostImage: ['image/jpeg', 'image/png', 'image/jpg'],
-        shippingLabel: [
-          'image/jpeg',
-          'image/png',
-          'image/jpg',
-          'application/pdf',
-        ],
+        suitabilityCertificate: ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'],
+        identityDoc: ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'],
+        studentIdOrEnrollmentProof: ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'],
         file: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
       };
 
@@ -130,7 +125,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
                 paths.push(filePath);
 
                 if (
-                  ['image', 'logo', 'lostImage', 'shippingLabel'].includes(
+                  ['image', 'suitabilityCertificate', 'identityDoc', 'studentIdOrEnrollmentProof'].includes(
                     fieldName,
                   ) &&
                   file.mimetype.startsWith('image/')
@@ -172,15 +167,13 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
 
         req.body = {
           ...req.body,
-          ...(processedFiles.logo && { logo: processedFiles.logo }),
           ...(processedFiles.image && { image: processedFiles.image }),
-          ...(processedFiles.shippingLabel && {
-            shippingLabel: processedFiles.shippingLabel,
-          }),
-          ...(processedFiles.lostImage && {
-            images: processedFiles.lostImage,
-          }),
+          ...(processedFiles.suitabilityCertificate && { suitabilityCertificate: processedFiles.suitabilityCertificate }),
+          ...(processedFiles.identityDoc && { identityDoc: processedFiles.identityDoc }),
+          ...(processedFiles.studentIdOrEnrollmentProof && { studentIdOrEnrollmentProof: processedFiles.studentIdOrEnrollmentProof }),
           ...(processedFiles.file && { file: processedFiles.file }),
+          ...(processedFiles.media && { media: processedFiles.media }),
+          ...(processedFiles.documents && { documents: processedFiles.documents }),
         };
 
         next();
@@ -190,3 +183,4 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
     });
   };
 };
+

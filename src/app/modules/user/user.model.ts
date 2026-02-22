@@ -83,12 +83,12 @@ const UserSchema = new Schema(
             type: String,
             default: "",
         },
-        
+
         // Citizen fields
         residentialArea: String,
         dateOfBirth: Date,
         exactAddress: String,
-        
+
         // Lawyer fields
         workArea: String,
         identityNumber: {
@@ -96,16 +96,28 @@ const UserSchema = new Schema(
             sparse: true,
             unique: true,
         },
-        suitabilityCertificate: [String],
-        
+        suitabilityCertificate: {
+            type: [String],
+            default: undefined,
+        },
+
         // Expert fields
-        identityDoc: String,
-        technicalSpecialty: String,
-        
+        identityDoc: {
+            type: [String],
+            default: undefined,
+        },
+        technicalSpecialty: {
+            type: [String],
+            default: undefined,
+        },
+
         // Student fields
         university: String,
         currentYear: Number,
-        studentIdOrEnrollmentProof: String,
+        studentIdOrEnrollmentProof: {
+            type: [String],
+            default: undefined,
+        },
     },
     {
         timestamps: true,
@@ -121,7 +133,7 @@ UserSchema.statics.isPasswordMatched = async function (
 };
 
 UserSchema.statics.isEmailExists = async function (email: string) {
-    const user = await this.findOne({ 
+    const user = await this.findOne({
         email: email.toLowerCase(),
         status: { $ne: USER_STATUS.DELETED }
     });
@@ -129,7 +141,7 @@ UserSchema.statics.isEmailExists = async function (email: string) {
 };
 
 UserSchema.statics.isPhoneExists = async function (phone: string) {
-    const user = await this.findOne({ 
+    const user = await this.findOne({
         phoneNumber: phone,
         status: { $ne: USER_STATUS.DELETED }
     });

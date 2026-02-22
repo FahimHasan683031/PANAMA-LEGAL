@@ -19,6 +19,9 @@ async function main() {
         mongoose.connect(config.database_url as string)
         logger.info(colors.green('🚀 Database connected successfully'))
 
+        // Seed Admin
+        await UserServices.seedAdmin();
+
         const port =
             typeof config.port === 'number' ? config.port : Number(config.port)
 

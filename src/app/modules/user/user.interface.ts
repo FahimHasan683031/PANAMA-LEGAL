@@ -37,13 +37,13 @@ export type IUser = {
     suitabilityCertificate?: string[];
 
     // Expert specific fields
-    identityDoc?: string;
-    technicalSpecialty?: string;
+    identityDoc?: string[];
+    technicalSpecialty?: string[];
 
     // Student specific fields
     university?: string;
     currentYear?: number;
-    studentIdOrEnrollmentProof?: string;
+    studentIdOrEnrollmentProof?: string[];
 };
 
 export type UserModel = {

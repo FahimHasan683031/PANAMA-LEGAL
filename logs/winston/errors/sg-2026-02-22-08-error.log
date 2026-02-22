@@ -1,0 +1,3 @@
+{Sun Feb 22 2026 08:20:21} [APP 🐞] error: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 400 - 12.034 ms
+{Sun Feb 22 2026 08:47:05} [APP 🐞] error: ::ffff:10.10.7.50 - PATCH /api/v1/user/profile 400 - 18.836 ms
+{Sun Feb 22 2026 08:49:15} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/auth/signup 400 - 35.118 ms

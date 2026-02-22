@@ -116,6 +116,39 @@ const deleteMyAccount = async (user: JwtPayload) => {
     return 'Account deleted successfully'
 }
 
+const seedAdmin = async () => {
+    try {
+        const isExistAdmin = await User.findOne({
+            email: config.super_admin.email,
+            role: USER_ROLES.ADMIN,
+        });
+
+        if (!isExistAdmin) {
+            await User.create({
+                fullName: config.super_admin.name,
+                email: config.super_admin.email,
+                password: config.super_admin.password,
+                role: USER_ROLES.ADMIN,
+                verified: true,
+                status: USER_STATUS.ACTIVE,
+                phoneNumber: '0000000000', // Default phone for seeded admin
+                authentication: {
+                    oneTimeCode: '',
+                    latestRequestAt: new Date(),
+                    wrongLoginAttempts: 0,
+                    resetPassword: false,
+                    restrictionLeftAt: null
+                }
+            });
+            logger.info('✅ Admin seeded successfully');
+        } else {
+            logger.info('ℹ️ Admin already exists');
+        }
+    } catch (error) {
+        logger.error('❌ Error seeding admin:', error);
+    }
+};
+
 export const UserServices = {
     updateProfile,
     getAllUsers,
@@ -123,5 +156,6 @@ export const UserServices = {
     deleteUser,
     getProfile,
     deleteMyAccount,
+    seedAdmin,
 }
 
