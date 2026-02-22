@@ -1,0 +1,75 @@
+{Sun Feb 22 2026 10:15:45} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:15:45} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:15:45} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:15:45} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:15:53} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:15:53} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:15:53} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:15:53} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:15:55} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:15:55} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:15:55} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:15:55} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:25:32} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/auth/admin-login 200 - 214.080 ms
+{Sun Feb 22 2026 10:26:10} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library-category 201 - 33.659 ms
+{Sun Feb 22 2026 10:26:46} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library-category 201 - 24.043 ms
+{Sun Feb 22 2026 10:27:30} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library-category 201 - 23.734 ms
+{Sun Feb 22 2026 10:27:44} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library-category 201 - 20.825 ms
+{Sun Feb 22 2026 10:32:32} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/library 200 - 21.501 ms
+{Sun Feb 22 2026 10:33:21} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/library 200 - 15.307 ms
+{Sun Feb 22 2026 10:35:53} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:35:53} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:35:53} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:35:53} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:35:58} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/library 200 - 8.769 ms
+{Sun Feb 22 2026 10:38:39} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/article-category 201 - 34.021 ms
+{Sun Feb 22 2026 10:39:11} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/article-category 201 - 5.328 ms
+{Sun Feb 22 2026 10:39:28} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/article-category 200 - 8.154 ms
+{Sun Feb 22 2026 10:42:23} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/article-category 200 - 4.200 ms
+{Sun Feb 22 2026 10:42:38} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/article 200 - 34.815 ms
+{Sun Feb 22 2026 10:42:56} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/article 200 - 12.124 ms
+{Sun Feb 22 2026 10:43:42} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:43:42} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:43:42} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:43:42} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:43:51} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:43:51} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:43:51} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:43:51} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:43:55} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:43:56} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:43:56} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:43:56} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:44:28} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:44:28} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:44:28} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:44:28} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:44:32} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:44:32} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:44:32} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:44:32} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:44:51} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/article/699a893ee2d2425fcbb07932 200 - 13.274 ms
+{Sun Feb 22 2026 10:46:10} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:46:10} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:46:10} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:46:10} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:46:13} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:46:13} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:46:13} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:46:13} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:46:15} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:46:15} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:46:15} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:46:15} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:47:11} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:47:11} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:47:11} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:47:11} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:47:15} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:47:15} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:47:15} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:47:15} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Sun Feb 22 2026 10:47:17} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Sun Feb 22 2026 10:47:17} [APP 🚀] info: ℹ️ Admin already exists
+{Sun Feb 22 2026 10:47:17} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Sun Feb 22 2026 10:47:17} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m

@@ -28,6 +28,9 @@ router.patch(
     ArticleControllers.updateArticle
 );
 
-router.delete("/:id", auth(USER_ROLES.ADMIN), ArticleControllers.deleteArticle);
+router.delete("/:id",
+    auth(USER_ROLES.ADMIN),
+    ArticleControllers.deleteArticle
+);
 
 export const ArticleRoutes = router;

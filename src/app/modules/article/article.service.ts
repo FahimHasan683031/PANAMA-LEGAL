@@ -10,7 +10,7 @@ const createArticle = async (payload: IArticle) => {
 };
 
 const getAllArticles = async (query: Record<string, unknown>) => {
-    const articleQuery = new QueryBuilder(ArticleModel.find().populate('category'), query)
+    const articleQuery = new QueryBuilder(ArticleModel.find(), query)
         .search(['title', 'description'])
         .filter()
         .sort()
@@ -27,7 +27,7 @@ const getAllArticles = async (query: Record<string, unknown>) => {
 };
 
 const getSingleArticle = async (id: string) => {
-    const result = await ArticleModel.findById(id).populate('category');
+    const result = await ArticleModel.findById(id).populate('category','_id title');
     if (!result) {
         throw new ApiError(StatusCodes.NOT_FOUND, "Article not found");
     }

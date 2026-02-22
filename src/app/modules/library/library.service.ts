@@ -10,7 +10,7 @@ const createLibrary = async (payload: ILibrary) => {
 };
 
 const getAllLibraries = async (query: Record<string, unknown>) => {
-    const libraryQuery = new QueryBuilder(LibraryModel.find().populate('category'), query)
+    const libraryQuery = new QueryBuilder(LibraryModel.find(), query)
         .search(['title', 'description'])
         .filter()
         .sort()
@@ -27,7 +27,7 @@ const getAllLibraries = async (query: Record<string, unknown>) => {
 };
 
 const getSingleLibrary = async (id: string) => {
-    const result = await LibraryModel.findById(id).populate('category');
+    const result = await LibraryModel.findById(id).populate('category','_id title description image');
     if (!result) {
         throw new ApiError(StatusCodes.NOT_FOUND, "Library item not found");
     }

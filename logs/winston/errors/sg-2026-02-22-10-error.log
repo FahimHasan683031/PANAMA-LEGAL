@@ -1,0 +1,6 @@
+{Sun Feb 22 2026 10:24:29} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/library-category 403 - 7.685 ms
+{Sun Feb 22 2026 10:24:36} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/library-category 500 - 2.154 ms
+{Sun Feb 22 2026 10:24:42} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/library-category 500 - 1.003 ms
+{Sun Feb 22 2026 10:24:54} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/auth/admin-login 400 - 19.122 ms
+{Sun Feb 22 2026 10:42:16} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/article 400 - 48.099 ms
+{Sun Feb 22 2026 10:42:43} [APP 🐞] error: ::ffff:10.10.7.50 - GET /api/v1/article?searchTerm=Reform&category=CATEGORY_ID 400 - 34.053 ms

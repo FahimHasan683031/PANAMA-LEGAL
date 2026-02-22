@@ -14,7 +14,7 @@ const librarySchema = new Schema<ILibrary>(
         },
         category: {
             type: Schema.Types.ObjectId,
-            ref: 'Category',
+            ref: 'LibraryCategory',
             required: true,
         },
         image: {

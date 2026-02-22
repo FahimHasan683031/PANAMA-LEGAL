@@ -9,6 +9,7 @@ import QueryBuilder from '../../builder/QueryBuilder'
 import config from '../../../config'
 
 
+// get all users
 const getAllUsers = async (query: Record<string, unknown>) => {
     const userQueryBuilder = new QueryBuilder(User.find().select('-password -authentication'), query)
         .search(['email', 'fullName', 'phoneNumber'])
@@ -26,6 +27,7 @@ const getAllUsers = async (query: Record<string, unknown>) => {
     }
 }
 
+// get single user
 const getSingleUser = async (id: string) => {
     const result = await User.findById(id).select('-password -authentication')
     if (!result) {
@@ -45,6 +47,7 @@ const deleteUser = async (id: string) => {
     return result
 }
 
+// update profile
 const updateProfile = async (
     user: JwtPayload,
     payload: Partial<IUser>
@@ -87,6 +90,7 @@ const updateProfile = async (
     return updatedUser
 }
 
+// get profile
 const getProfile = async (user: JwtPayload) => {
     const result = await User.findById(user.authId).select('-password -authentication')
     if (!result) {
@@ -99,7 +103,7 @@ const getProfile = async (user: JwtPayload) => {
     return result
 }
 
-
+// delete my account
 const deleteMyAccount = async (user: JwtPayload) => {
     const isExistUser = await User.findById(user.authId)
     if (!isExistUser) {
@@ -116,6 +120,7 @@ const deleteMyAccount = async (user: JwtPayload) => {
     return 'Account deleted successfully'
 }
 
+// seed admin
 const seedAdmin = async () => {
     try {
         const isExistAdmin = await User.findOne({

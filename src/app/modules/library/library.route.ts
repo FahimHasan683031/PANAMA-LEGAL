@@ -28,6 +28,9 @@ router.patch(
     LibraryControllers.updateLibrary
 );
 
-router.delete("/:id", auth(USER_ROLES.ADMIN), LibraryControllers.deleteLibrary);
+router.delete("/:id",
+    auth(USER_ROLES.ADMIN),
+    LibraryControllers.deleteLibrary
+);
 
 export const LibraryRoutes = router;

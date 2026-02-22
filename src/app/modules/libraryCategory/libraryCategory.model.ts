@@ -1,25 +1,25 @@
 import { model, Schema } from "mongoose";
-import { IArticle } from "./article.interface";
+import { ILibraryCategory } from "./libraryCategory.interface";
 
-const articleSchema = new Schema<IArticle>(
+const libraryCategorySchema = new Schema<ILibraryCategory>(
     {
         title: {
             type: String,
             required: true,
+            unique: true,
             trim: true,
         },
         image: {
             type: String,
             required: true,
         },
-        category: {
-            type: Schema.Types.ObjectId,
-            ref: 'ArticleCategory',
-            required: true,
-        },
         description: {
             type: String,
             required: true,
+        },
+        isActive: {
+            type: Boolean,
+            default: true,
         },
     },
     {
@@ -27,4 +27,4 @@ const articleSchema = new Schema<IArticle>(
     }
 );
 
-export const ArticleModel = model<IArticle>("Article", articleSchema);
+export const LibraryCategory = model<ILibraryCategory>("LibraryCategory", libraryCategorySchema);
