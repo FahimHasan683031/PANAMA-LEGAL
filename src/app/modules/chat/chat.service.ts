@@ -1,5 +1,5 @@
 import { FilterQuery, Types } from 'mongoose';
-import { Message } from '../message/message.model';
+// import { Message } from '../message/message.model'; // Removed as per refactor to CaseMessage
 import { IChat } from './chat.interface';
 import { Chat } from './chat.model';
 import { JwtPayload } from 'jsonwebtoken';
@@ -78,21 +78,13 @@ const getChatFromDB = async (
 
     const pagination = await chatQueryBuilder.getPaginationInfo();
 
-    // Calculate unread count for each chat
-    const chatsWithDetails = await Promise.all(
-        chats.map(async (chat: any) => {
-            const unreadCount = await Message.countDocuments({
-                chatId: chat._id,
-                sender: { $ne: new Types.ObjectId(user.id) },
-                readBy: { $ne: new Types.ObjectId(user.id) }
-            });
-
-            return {
-                ...chat,
-                unreadCount
-            };
-        })
-    );
+    // Calculate unread count for each chat (Stubbed since message module refactored)
+    const chatsWithDetails = chats.map((chat: any) => {
+        return {
+            ...chat,
+            unreadCount: 0
+        };
+    });
 
     // Filter out chats where participants array is empty after filtering
     const filteredChats = chatsWithDetails.filter(
@@ -122,8 +114,8 @@ const deleteChatFromDB = async (chatId: string, userId: string): Promise<void> =
         );
     }
 
-    // Delete all messages in the chat
-    await Message.deleteMany({ chatId });
+    // Delete all messages in the chat (Removed as per refactor to CaseMessage)
+    // await Message.deleteMany({ chatId });
 
     // Delete the chat
     await Chat.findByIdAndDelete(chatId);

@@ -14,6 +14,7 @@ type IFolderName =
   | 'identityDoc'
   | 'studentIdOrEnrollmentProof'
   | 'file'
+  | 'files'
 
 interface ProcessedFiles {
   [key: string]: string | string[] | undefined
@@ -27,6 +28,7 @@ const uploadFields = [
   { name: 'identityDoc', maxCount: 10 },
   { name: 'studentIdOrEnrollmentProof', maxCount: 10 },
   { name: 'file', maxCount: 1 },
+  { name: 'files', maxCount: 5 },
 ] as const
 
 export const fileAndBodyProcessorUsingDiskStorage = () => {
@@ -67,6 +69,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
         identityDoc: ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'],
         studentIdOrEnrollmentProof: ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'],
         file: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+        files: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
       };
 
       const fieldType = file.fieldname as IFolderName;
@@ -125,7 +128,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
                 paths.push(filePath);
 
                 if (
-                  ['image', 'suitabilityCertificate', 'identityDoc', 'studentIdOrEnrollmentProof'].includes(
+                  ['image', 'suitabilityCertificate', 'identityDoc', 'studentIdOrEnrollmentProof', 'files'].includes(
                     fieldName,
                   ) &&
                   file.mimetype.startsWith('image/')
@@ -172,6 +175,7 @@ export const fileAndBodyProcessorUsingDiskStorage = () => {
           ...(processedFiles.identityDoc && { identityDoc: processedFiles.identityDoc }),
           ...(processedFiles.studentIdOrEnrollmentProof && { studentIdOrEnrollmentProof: processedFiles.studentIdOrEnrollmentProof }),
           ...(processedFiles.file && { file: processedFiles.file }),
+          ...(processedFiles.files && { files: processedFiles.files }),
           ...(processedFiles.media && { media: processedFiles.media }),
           ...(processedFiles.documents && { documents: processedFiles.documents }),
         };

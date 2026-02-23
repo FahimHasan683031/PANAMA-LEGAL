@@ -28,7 +28,10 @@ const caseSchema = new Schema<ICase, CaseModel>(
         },
         lastMessage: {
             type: Schema.Types.ObjectId,
-            ref: 'Message'
+            ref: 'CaseMessage'
+        },
+        lastMessageAt: {
+            type: Date
         }
     },
     {

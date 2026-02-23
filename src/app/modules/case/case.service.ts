@@ -21,6 +21,10 @@ const createCaseToDB = async (payload: Partial<ICase>): Promise<ICase> => {
 };
 
 const getCasesFromDB = async (user: JwtPayload, query: Record<string, unknown>) => {
+    if (!query.sort) {
+        query.sort = '-lastMessageAt';
+    }
+
     const caseQuery = new QueryBuilder(
         Case.find({
             $or: [

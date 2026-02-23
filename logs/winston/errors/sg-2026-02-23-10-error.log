@@ -1,0 +1,10 @@
+{Mon Feb 23 2026 10:17:41} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/api/v1/case-message 404 - 1.074 ms
+{Mon Feb 23 2026 10:17:52} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 404 - 2.929 ms
+{Mon Feb 23 2026 10:18:07} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 500 - 28.417 ms
+{Mon Feb 23 2026 10:18:30} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 500 - 3.823 ms
+{Mon Feb 23 2026 10:22:12} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 500 - 134.360 ms
+{Mon Feb 23 2026 10:33:40} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 500 - 151.109 ms
+{Mon Feb 23 2026 10:33:41} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 500 - 104.100 ms
+{Mon Feb 23 2026 10:39:59} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/case-message 400 - 11.595 ms
+{Mon Feb 23 2026 10:44:31} [APP 🐞] error: ::ffff:10.10.7.50 - GET /api/v1/api/v1/case-message/699abb22b4691c174a90d9bb 404 - 1.820 ms
+{Mon Feb 23 2026 10:48:21} [APP 🐞] error: ::ffff:10.10.7.50 - DELETE /api/v1/case-message/699bda27963de198e5ef66fa 404 - 3.643 ms

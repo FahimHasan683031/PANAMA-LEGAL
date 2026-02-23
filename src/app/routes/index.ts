@@ -12,7 +12,7 @@ import { PlanRoutes } from '../modules/plan/plan.route';
 import { SubscriptionRoutes } from '../modules/subscription/subscription.route';
 import { ChatRoutes } from '../modules/chat/chat.routes';
 import { CaseRoutes } from '../modules/case/case.routes';
-import { MessageRoutes } from '../modules/message/message.routes';
+import { CaseMessageRoutes } from '../modules/caseMessage/caseMessage.routes';
 import { NotificationRoutes } from '../modules/notification/notification.routes';
 import { LibraryRoutes } from '../modules/library/library.route';
 import { ArticleRoutes } from '../modules/article/article.route';
@@ -33,7 +33,7 @@ const apiRoutes = [
     { path: "/subscription", route: SubscriptionRoutes },
     { path: "/chat", route: ChatRoutes },
     { path: "/case", route: CaseRoutes },
-    { path: "/message", route: MessageRoutes },
+    { path: "/case-message", route: CaseMessageRoutes },
     { path: "/notification", route: NotificationRoutes },
     { path: "/library", route: LibraryRoutes },
     { path: "/article", route: ArticleRoutes },

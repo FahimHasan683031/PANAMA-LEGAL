@@ -10,7 +10,7 @@ export type ICase = {
     description: string;
     status: ICaseStatus;
     lastMessage?: Types.ObjectId;
-
+    lastMessageAt?: Date;
 }
 
 export type CaseModel = Model<ICase, Record<string, unknown>>;
