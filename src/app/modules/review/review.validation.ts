@@ -1,10 +1,17 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const ReviewValidationSchema = z.object({
-  body:z.object({
-    name: z.string().min(1, 'Name is required'),
-    email: z.string().email('Invalid email address'),
-    rating: z.number().min(1, 'Rating must be at least 1').max(5, 'Rating must be at most 5'),
+const createReviewZodSchema = z.object({
+  body: z.object({
+    lawyer: z.string({
+      required_error: 'Lawyer ID is required',
+    }),
+    rating: z.number({
+      required_error: 'Rating is required',
+    }).min(1).max(5),
     comment: z.string().optional(),
-  })
-})
+  }),
+});
+
+export const ReviewValidation = {
+  createReviewZodSchema,
+};

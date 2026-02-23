@@ -1,19 +1,24 @@
-import express from 'express'
-import { ReviewController } from './review.controller'
-import validateRequest from '../../middleware/validateRequest'
-import { ReviewValidationSchema } from './review.validation'
+import express from 'express';
+import { USER_ROLES } from '../../../enum/user';
+import auth from '../../middleware/auth';
+import validateRequest from '../../middleware/validateRequest';
+import { ReviewController } from './review.controller';
+import { ReviewValidation } from './review.validation';
 
-const router = express.Router()
+const router = express.Router();
 
+// Get reviews for a specific lawyer
+router.get('/:id', ReviewController.getLawyerReviews);
+
+// Create a review (Only Citizen can review)
 router.post(
   '/',
-  validateRequest(ReviewValidationSchema),
-  ReviewController.createReview,
-)
+  auth(USER_ROLES.CITIZEN),
+  validateRequest(ReviewValidation.createReviewZodSchema),
+  ReviewController.createReview
+);
 
-router.get('/', ReviewController.getAllReviews)
-router.get('/:id', ReviewController.getSingleReview)
-router.delete('/:id', ReviewController.deleteReview)
+// Delete a review (Only the reviewer or potentially admin)
+router.delete('/:id', auth(USER_ROLES.CITIZEN), ReviewController.deleteReview);
 
-
-export const ReviewRoutes = router
+export const ReviewRoutes = router;

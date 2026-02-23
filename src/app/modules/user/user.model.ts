@@ -118,6 +118,16 @@ const UserSchema = new Schema(
             type: [String],
             default: undefined,
         },
+
+        // Rating fields
+        averageRating: {
+            type: Number,
+            default: 0,
+        },
+        totalReviews: {
+            type: Number,
+            default: 0,
+        },
     },
     {
         timestamps: true,

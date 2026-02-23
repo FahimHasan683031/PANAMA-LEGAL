@@ -25,7 +25,7 @@ export type IUser = {
     role: USER_ROLES;
     authentication: IAuthentication;
     fcmToken?: string;
-    
+
     // Citizen specific fields
     residentialArea?: string;
     dateOfBirth?: Date;
@@ -44,6 +44,10 @@ export type IUser = {
     university?: string;
     currentYear?: number;
     studentIdOrEnrollmentProof?: string[];
+
+    // Lawyer rating fields
+    averageRating: number;
+    totalReviews: number;
 };
 
 export type UserModel = {
