@@ -11,6 +11,7 @@ import { TokenRoutes } from '../modules/token/token.route';
 import { PlanRoutes } from '../modules/plan/plan.route';
 import { SubscriptionRoutes } from '../modules/subscription/subscription.route';
 import { ChatRoutes } from '../modules/chat/chat.routes';
+import { ChatbotRoutes } from '../modules/chatbot/chatbot.routes';
 import { CaseRoutes } from '../modules/case/case.routes';
 import { CaseMessageRoutes } from '../modules/caseMessage/caseMessage.routes';
 import { NotificationRoutes } from '../modules/notification/notification.routes';
@@ -32,6 +33,7 @@ const apiRoutes = [
     { path: "/plan", route: PlanRoutes },
     { path: "/subscription", route: SubscriptionRoutes },
     { path: "/chat", route: ChatRoutes },
+    { path: "/chatbot", route: ChatbotRoutes },
     { path: "/case", route: CaseRoutes },
     { path: "/case-message", route: CaseMessageRoutes },
     { path: "/notification", route: NotificationRoutes },
