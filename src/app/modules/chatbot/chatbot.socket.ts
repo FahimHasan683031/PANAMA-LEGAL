@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io';
 import { ChatbotHistory } from './chatbot.model';
-import { getAIStreamingResponse } from './openai.service';
+import { getGeminiStreamingResponse } from './gemini.service';
 import mongoose from 'mongoose';
 import { IChatMessage } from './chatbot.interface';
 
@@ -36,7 +36,7 @@ export const handleChatbotSocket = (socket: Socket) => {
             let fullAIResponse = '';
 
             // Stream AI response with optional initial topic context
-            await getAIStreamingResponse(contextMessages as any, (chunk: string) => {
+            await getGeminiStreamingResponse(contextMessages, (chunk: string) => {
                 fullAIResponse += chunk;
                 socket.emit(`ai-response::${userId}`, { chunk });
             }, topic);

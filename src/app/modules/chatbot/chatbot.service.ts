@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import ApiError from '../../../errors/ApiError';
 import { ChatbotCategory, ChatbotHistory } from './chatbot.model';
 import { IChatMessage } from './chatbot.interface';
-import { getAIResponse } from './openai.service';
+import { getGeminiResponse } from './gemini.service';
 import mongoose from 'mongoose';
 
 const getAllCategories = async () => {
@@ -39,7 +39,7 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
     }));
 
     // Get AI response with optional initial context
-    const aiContent = await getAIResponse(contextMessages as any, initialContext);
+    const aiContent = await getGeminiResponse(contextMessages, initialContext);
 
     if (!aiContent) {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to get AI response');

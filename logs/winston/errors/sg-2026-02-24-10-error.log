@@ -1,0 +1,6 @@
+{Tue Feb 24 2026 10:19:32} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 1100.932 ms
+{Tue Feb 24 2026 10:32:09} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 1662.257 ms
+{Tue Feb 24 2026 10:41:44} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 4560.906 ms
+{Tue Feb 24 2026 10:43:15} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 3959.588 ms
+{Tue Feb 24 2026 10:46:11} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 3678.522 ms
+{Tue Feb 24 2026 10:46:44} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 4770.937 ms

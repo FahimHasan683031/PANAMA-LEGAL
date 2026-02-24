@@ -1,0 +1,14 @@
+{Tue Feb 24 2026 11:11:28} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Tue Feb 24 2026 11:11:28} [APP 🚀] info: ℹ️ Admin already exists
+{Tue Feb 24 2026 11:11:28} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Tue Feb 24 2026 11:11:28} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Tue Feb 24 2026 11:12:17} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Tue Feb 24 2026 11:12:17} [APP 🚀] info: ℹ️ Admin already exists
+{Tue Feb 24 2026 11:12:18} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Tue Feb 24 2026 11:12:18} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Tue Feb 24 2026 11:13:00} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 6258.307 ms
+{Tue Feb 24 2026 11:14:09} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 4869.114 ms
+{Tue Feb 24 2026 11:15:38} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 3977.533 ms
+{Tue Feb 24 2026 11:17:41} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/chatbot/history 200 - 408.818 ms
+{Tue Feb 24 2026 11:22:22} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/chatbot/categories 200 - 723.842 ms
+{Tue Feb 24 2026 11:27:17} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 6035.119 ms

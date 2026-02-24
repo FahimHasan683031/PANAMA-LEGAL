@@ -47,5 +47,6 @@ export default {
         webhookSecret: process.env.WEBHOOK_SECRET,
         paymentSuccess: process.env.SUCCESS_URL,
         frontendUrl: process.env.FRONTEND_URL,
-    }
+    },
+    gemini_api_key: process.env.GEMINI_API_KEY,
 }
