@@ -14,5 +14,9 @@ router.get("/my-plan",
     SubscriptionController.subscriptionDetails
 );
 
+router.post("/verify-purchase",
+    auth(USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT),
+    SubscriptionController.verifyPurchase
+);
 
 export const SubscriptionRoutes = router;

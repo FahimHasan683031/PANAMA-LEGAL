@@ -1,0 +1,3 @@
+{Tue Feb 24 2026 16:03:26} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 402 - 38.354 ms
+{Tue Feb 24 2026 16:04:21} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 404 - 18.895 ms
+{Tue Feb 24 2026 16:04:22} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 404 - 5.481 ms

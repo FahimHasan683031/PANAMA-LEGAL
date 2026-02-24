@@ -77,6 +77,17 @@ const deleteMyAccount = catchAsync(async (req: Request, res: Response) => {
 
 
 
+// get random lawyer
+const getRandomLawyer = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserServices.getRandomLawyer()
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Random lawyer fetched successfully',
+    data: result,
+  })
+})
+
 export const UserController = {
   getAllUsers,
   updateProfile,
@@ -84,4 +95,5 @@ export const UserController = {
   deleteUser,
   getProfile,
   deleteMyAccount,
+  getRandomLawyer,
 }

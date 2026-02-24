@@ -20,26 +20,35 @@ export const getGeminiResponse = async (
     messages: { role: string; content: string }[],
     initialContext?: string
 ) => {
-    // Using gemini-2.5-flash as requested by the user
-    // Forcing apiVersion: 'v1' for stability
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }, { apiVersion: 'v1' });
-
     const systemPrompt = `You are a helpful and professional legal assistant for 'Panama Legal'. 
         Your goal is to provide accurate and helpful information about Panamanian law. 
         Keep your responses concise and professional. 
         If you are unsure about something, recommend the user to contact a specialist lawyer through the application.
         ${initialContext ? `The user is currently interested in: ${initialContext}. Please tailor your initial responses to this topic.` : ''}`;
 
-    const history = formatHistory(messages);
-
-    const chat = model.startChat({
-        history: history.slice(0, -1), // History without the latest message
+    // Note: The user had gemini-2.5-flash, but current stable is gemini-1.5-flash
+    // Using gemini-1.5-flash for reliability unless 2.5 is specific to user's environment
+    const model = genAI.getGenerativeModel({
+        model: "gemini-2.5-flash",
+        systemInstruction: systemPrompt
     });
 
-    const result = await chat.sendMessage([
-        { text: systemPrompt },
-        { text: messages[messages.length - 1].content }
-    ]);
+    const fullHistory = formatHistory(messages);
+    let chatHistory = fullHistory.slice(0, -1);
+
+    // Gemini history MUST start with 'user' role
+    const firstUserIndex = chatHistory.findIndex(m => m.role === 'user');
+    if (firstUserIndex !== -1) {
+        chatHistory = chatHistory.slice(firstUserIndex);
+    } else {
+        chatHistory = [];
+    }
+
+    const chat = model.startChat({
+        history: chatHistory,
+    });
+
+    const result = await chat.sendMessage(messages[messages.length - 1].content);
 
     const response = await result.response;
     return response.text();
@@ -53,26 +62,33 @@ export const getGeminiStreamingResponse = async (
     onChunk: (chunk: string) => void,
     initialContext?: string
 ) => {
-    // Using gemini-2.5-flash as requested by the user
-    // Forcing apiVersion: 'v1' for stability
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }, { apiVersion: 'v1' });
-
     const systemPrompt = `You are a helpful and professional legal assistant for 'Panama Legal'. 
         Your goal is to provide accurate and helpful information about Panamanian law. 
         Keep your responses concise and professional. 
         If you are unsure about something, recommend the user to contact a specialist lawyer through the application.
         ${initialContext ? `The user is currently interested in: ${initialContext}. Please tailor your initial responses to this topic.` : ''}`;
 
-    const history = formatHistory(messages);
-
-    const chat = model.startChat({
-        history: history.slice(0, -1),
+    const model = genAI.getGenerativeModel({
+        model: "gemini-1.5-flash",
+        systemInstruction: systemPrompt
     });
 
-    const result = await chat.sendMessageStream([
-        { text: systemPrompt },
-        { text: messages[messages.length - 1].content }
-    ]);
+    const fullHistory = formatHistory(messages);
+    let chatHistory = fullHistory.slice(0, -1);
+
+    // Gemini history MUST start with 'user' role
+    const firstUserIndex = chatHistory.findIndex(m => m.role === 'user');
+    if (firstUserIndex !== -1) {
+        chatHistory = chatHistory.slice(firstUserIndex);
+    } else {
+        chatHistory = [];
+    }
+
+    const chat = model.startChat({
+        history: chatHistory,
+    });
+
+    const result = await chat.sendMessageStream(messages[messages.length - 1].content);
 
     for await (const chunk of result.stream) {
         const chunkText = chunk.text();

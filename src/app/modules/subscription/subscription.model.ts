@@ -29,6 +29,19 @@ const subscriptionSchema = new Schema<ISubscription, SubscriptionModel>(
             type: String,
             required: true
         },
+        platform: {
+            type: String,
+            enum: ["apple", "google", "stripe"],
+            required: true
+        },
+        purchaseToken: {
+            type: String,
+            required: false
+        },
+        productId: {
+            type: String,
+            required: true
+        },
         currentPeriodStart: {
             type: Date,
             required: true
@@ -43,11 +56,11 @@ const subscriptionSchema = new Schema<ISubscription, SubscriptionModel>(
         },
         status: {
             type: String,
-            enum: ["expired", "active", "cancel"],
-            default: "active",
+            enum: ["expired", "active", "cancel", "pending"],
+            default: "pending",
             required: true
         },
-        
+
 
     },
     {

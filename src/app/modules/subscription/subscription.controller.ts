@@ -5,29 +5,41 @@ import sendResponse from "../../../shared/sendResponse";
 import { StatusCodes } from "http-status-codes";
 import { JwtPayload } from "jsonwebtoken";
 
-const subscriptions = catchAsync( async(req: Request, res: Response)=>{
+const subscriptions = catchAsync(async (req: Request, res: Response) => {
     const result = await SubscriptionService.subscriptionsFromDB(req.query);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: "Subscription List Retrieved Successfully",
+        message: "Subscriptions retrieved successfully",
         data: result
     })
 });
 
-const subscriptionDetails = catchAsync( async(req: Request, res: Response)=>{
+const subscriptionDetails = catchAsync(async (req: Request, res: Response) => {
     const result = await SubscriptionService.subscriptionDetailsFromDB(req.user as JwtPayload);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: "Subscription Details Retrieved Successfully",
+        message: "Subscription details retrieved successfully",
+        data: result
+    })
+});
+
+const verifyPurchase = catchAsync(async (req: Request, res: Response) => {
+    const result = await SubscriptionService.processIAPPurchase(req.user as JwtPayload, req.body);
+
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "Purchase verified and subscription activated successfully",
         data: result
     })
 });
 
 export const SubscriptionController = {
     subscriptions,
-    subscriptionDetails
-}
+    subscriptionDetails,
+    verifyPurchase
+};

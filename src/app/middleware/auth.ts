@@ -4,6 +4,8 @@ import { Secret } from 'jsonwebtoken'
 import config from '../../config'
 import { jwtHelper } from '../../helpers/jwtHelper'
 import ApiError from '../../errors/ApiError'
+import { User } from '../modules/user/user.model'
+import { USER_ROLES } from '../../enum/user'
 
 const auth =
     (...roles: string[]) =>
@@ -36,6 +38,33 @@ const auth =
                                 "You don't have permission to access this API",
                             )
                         }
+
+                        // // Subscription check for relevant roles
+                        // const rolesRequiringSubscription = [USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT];
+
+                        // // Whitelist for endpoints that bypass subscription check
+                        // const bypassPaths = [
+                        //     '/api/v1/user/me',
+                        //     '/api/v1/subscription/verify-purchase',
+                        //     '/api/v1/subscription/my-plan',
+                        //     '/api/v1/plan'
+                        // ];
+
+                        // const isBypassPath = bypassPaths.some(path => req.originalUrl.startsWith(path));
+
+                        // if (rolesRequiringSubscription.includes(verifyUser.role) && !isBypassPath) {
+                        //     const dbUser = await User.findById(verifyUser.authId || verifyUser.id).select('isSubscribed subscriptionExpiry');
+                        //     const now = new Date();
+
+                        //     if (!dbUser?.isSubscribed || (dbUser.subscriptionExpiry && dbUser.subscriptionExpiry < now)) {
+                        //         // Update DB if it was active but now expired
+                        //         if (dbUser?.isSubscribed) {
+                        //             await User.findByIdAndUpdate(verifyUser.authId || verifyUser.id, { isSubscribed: false });
+                        //         }
+                        //         throw new ApiError(StatusCodes.PAYMENT_REQUIRED, 'Subscription required to access this feature');
+                                
+                        //     }
+                        // }
 
                         next()
                     } catch (error) {

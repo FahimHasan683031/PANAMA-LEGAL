@@ -16,6 +16,9 @@ router.get(
   auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
   UserController.getProfile,
 )
+
+router.get('/random-lawyer', UserController.getRandomLawyer);
+
 router.get('/', auth(USER_ROLES.ADMIN), UserController.getAllUsers);
 router.patch(
   '/profile',

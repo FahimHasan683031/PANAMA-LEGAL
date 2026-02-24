@@ -48,6 +48,10 @@ export type IUser = {
     // Lawyer rating fields
     averageRating: number;
     totalReviews: number;
+
+    // Subscription fields
+    isSubscribed: boolean;
+    subscriptionExpiry: Date | null;
 };
 
 export type UserModel = {

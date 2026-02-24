@@ -1,14 +1,17 @@
 import { Model, Types } from 'mongoose';
 
 export type ISubscription = {
-    _id?:string;
+    _id?: string;
     user: Types.ObjectId;
     customerId: string;
     price: number;
     plan: Types.ObjectId;
     trxId?: string;
     subscriptionId: string;
-    status: 'expired' | 'active' | 'cancel';
+    platform: 'apple' | 'google' | 'stripe';
+    purchaseToken?: string;
+    productId: string;
+    status: 'expired' | 'active' | 'cancel' | 'pending';
     currentPeriodStart: Date;
     currentPeriodEnd: Date;
     invoice?: string;

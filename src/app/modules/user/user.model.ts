@@ -128,6 +128,16 @@ const UserSchema = new Schema(
             type: Number,
             default: 0,
         },
+
+        // Subscription fields
+        isSubscribed: {
+            type: Boolean,
+            default: false,
+        },
+        subscriptionExpiry: {
+            type: Date,
+            default: null,
+        },
     },
     {
         timestamps: true,

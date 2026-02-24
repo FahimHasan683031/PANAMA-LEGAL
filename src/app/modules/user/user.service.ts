@@ -154,6 +154,27 @@ const seedAdmin = async () => {
     }
 };
 
+// get random lawyer
+const getRandomLawyer = async () => {
+    const result = await User.aggregate([
+        {
+            $match: {
+                role: USER_ROLES.LAWYER,
+                status: USER_STATUS.ACTIVE
+            }
+        },
+        { $sample: { size: 1 } },
+        {
+            $project: {
+                password: 0,
+                authentication: 0
+            }
+        }
+    ]);
+
+    return result.length > 0 ? result[0] : null;
+};
+
 export const UserServices = {
     updateProfile,
     getAllUsers,
@@ -162,5 +183,6 @@ export const UserServices = {
     getProfile,
     deleteMyAccount,
     seedAdmin,
+    getRandomLawyer,
 }
 
