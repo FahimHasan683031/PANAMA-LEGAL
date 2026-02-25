@@ -3,8 +3,6 @@ import { UserController } from './user.controller'
 import auth from '../../middleware/auth'
 import validateRequest from '../../middleware/validateRequest'
 import { USER_ROLES } from '../../../enum/user'
-
-import fileUploadHandler from '../../middleware/fileUploadHandler'
 import { UserValidations } from './user.validation'
 import { fileAndBodyProcessorUsingDiskStorage } from '../../middleware/processReqBody'
 
@@ -17,9 +15,16 @@ router.get(
   UserController.getProfile,
 )
 
-router.get('/random-lawyer', UserController.getRandomLawyer);
+router.get('/random-lawyer',
+  auth(USER_ROLES.CITIZEN),
+  UserController.getRandomLawyer
+)
 
 router.get('/', auth(USER_ROLES.ADMIN), UserController.getAllUsers);
+
+// get single user
+router.get('/:id', UserController.getSingleUser)
+
 router.patch(
   '/profile',
   auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
@@ -37,8 +42,7 @@ router.delete(
 )
 
 
-// get single user
-router.get('/:id', UserController.getSingleUser)
+
 
 
 // delete user

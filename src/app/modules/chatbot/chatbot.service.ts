@@ -23,6 +23,11 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
         });
     }
 
+    // Reset history if a new initial context is provided
+    if (initialContext) {
+        history.messages = [];
+    }
+
     // Add user message to history
     const userMsg: IChatMessage = {
         role: 'user',
@@ -32,13 +37,13 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
 
     history.messages.push(userMsg);
 
-    // Prepare messages for OpenAI (last 10 messages for context)
+    // Prepare messages for AI (last 10 messages for context)
     const contextMessages = history.messages.slice(-10).map(msg => ({
         role: msg.role,
         content: msg.content,
     }));
 
-    // Get AI response with optional initial context
+    // Get AI response
     const aiContent = await getGeminiResponse(contextMessages, initialContext);
 
     if (!aiContent) {
@@ -53,6 +58,12 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
     };
 
     history.messages.push(aiMsg);
+
+    // Ensure only last 10 messages are saved to prevent memory/token bloat
+    if (history.messages.length > 10) {
+        history.messages = history.messages.slice(-10);
+    }
+
     await history.save();
 
     return aiMsg;

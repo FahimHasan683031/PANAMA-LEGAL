@@ -79,7 +79,7 @@ const deleteMyAccount = catchAsync(async (req: Request, res: Response) => {
 
 // get random lawyer
 const getRandomLawyer = catchAsync(async (req: Request, res: Response) => {
-  const result = await UserServices.getRandomLawyer()
+  const result = await UserServices.getRandomLawyer(req.query.id as string)
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,

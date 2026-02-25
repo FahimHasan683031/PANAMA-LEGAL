@@ -2,6 +2,8 @@ import express from 'express';
 import { USER_ROLES } from '../../../enum/user';
 import auth from '../../middleware/auth';
 import { ChatbotController } from './chatbot.controller';
+import validateRequest from '../../middleware/validateRequest';
+import { ChatbotValidations } from './chatbot.validation';
 
 const router = express.Router();
 
@@ -23,6 +25,7 @@ router.get(
 router.post(
     '/ask',
     auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
+    validateRequest(ChatbotValidations.askAISchema),
     ChatbotController.askAI
 );
 

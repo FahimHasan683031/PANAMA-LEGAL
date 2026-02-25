@@ -1,0 +1,20 @@
+{Wed Feb 25 2026 08:45:56} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 08:45:56} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 08:45:56} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 08:45:56} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 08:46:17} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/chatbot/history 200 - 15.010 ms
+{Wed Feb 25 2026 08:59:04} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 18.720 ms
+{Wed Feb 25 2026 08:59:13} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 4.606 ms
+{Wed Feb 25 2026 08:59:15} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 3.633 ms
+{Wed Feb 25 2026 08:59:20} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.908 ms
+{Wed Feb 25 2026 08:59:21} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.147 ms
+{Wed Feb 25 2026 08:59:22} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.544 ms
+{Wed Feb 25 2026 08:59:24} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.543 ms
+{Wed Feb 25 2026 08:59:25} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.780 ms
+{Wed Feb 25 2026 08:59:25} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.700 ms
+{Wed Feb 25 2026 08:59:26} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.361 ms
+{Wed Feb 25 2026 08:59:27} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.756 ms
+{Wed Feb 25 2026 08:59:28} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.545 ms
+{Wed Feb 25 2026 08:59:29} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.456 ms
+{Wed Feb 25 2026 08:59:30} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.466 ms
+{Wed Feb 25 2026 08:59:31} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.536 ms

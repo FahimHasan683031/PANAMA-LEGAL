@@ -25,8 +25,8 @@ const getChatHistory = catchAsync(async (req: Request, res: Response) => {
 });
 
 const askAI = catchAsync(async (req: Request, res: Response) => {
-    const { message, topic } = req.body;
-    const result = await ChatbotService.askAI(req.user.authId, message, topic);
+    const { question, topic } = req.body;
+    const result = await ChatbotService.askAI(req.user.authId, question, topic);
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,

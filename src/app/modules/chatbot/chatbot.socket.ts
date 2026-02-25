@@ -19,6 +19,11 @@ export const handleChatbotSocket = (socket: Socket) => {
                 });
             }
 
+            // Reset history if a new topic (context) is provided
+            if (topic) {
+                history.messages = [];
+            }
+
             // Add user message to history
             const userMsg: IChatMessage = {
                 role: 'user',
@@ -27,7 +32,7 @@ export const handleChatbotSocket = (socket: Socket) => {
             };
             history.messages.push(userMsg);
 
-            // Prepare context
+            // Prepare context (last 10 messages)
             const contextMessages = history.messages.slice(-10).map(msg => ({
                 role: msg.role,
                 content: msg.content,
@@ -48,6 +53,12 @@ export const handleChatbotSocket = (socket: Socket) => {
                 timestamp: new Date(),
             };
             history.messages.push(aiMsg);
+
+            // Ensure only last 10 messages are saved
+            if (history.messages.length > 10) {
+                history.messages = history.messages.slice(-10);
+            }
+
             await history.save();
 
             // Signal completion

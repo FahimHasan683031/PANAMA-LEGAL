@@ -1,0 +1,163 @@
+{Wed Feb 25 2026 09:21:29} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:21:29} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:21:29} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:21:29} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:21:36} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:21:36} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:21:36} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:21:36} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:23:04} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 6.156 ms
+{Wed Feb 25 2026 09:23:05} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 6.842 ms
+{Wed Feb 25 2026 09:23:06} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 3.599 ms
+{Wed Feb 25 2026 09:23:07} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.694 ms
+{Wed Feb 25 2026 09:23:08} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.695 ms
+{Wed Feb 25 2026 09:23:09} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.550 ms
+{Wed Feb 25 2026 09:23:10} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.773 ms
+{Wed Feb 25 2026 09:23:11} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.663 ms
+{Wed Feb 25 2026 09:23:12} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.613 ms
+{Wed Feb 25 2026 09:23:12} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.719 ms
+{Wed Feb 25 2026 09:23:13} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.833 ms
+{Wed Feb 25 2026 09:23:14} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.374 ms
+{Wed Feb 25 2026 09:23:16} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.565 ms
+{Wed Feb 25 2026 09:23:17} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.525 ms
+{Wed Feb 25 2026 09:23:18} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.464 ms
+{Wed Feb 25 2026 09:24:20} [APP 🚀] info: ::ffff:10.10.7.50 - GET / 200 - 0.818 ms
+{Wed Feb 25 2026 09:24:34} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.753 ms
+{Wed Feb 25 2026 09:24:38} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 304 - 2.227 ms
+{Wed Feb 25 2026 09:24:39} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.920 ms
+{Wed Feb 25 2026 09:24:40} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.901 ms
+{Wed Feb 25 2026 09:24:41} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.873 ms
+{Wed Feb 25 2026 09:24:41} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.664 ms
+{Wed Feb 25 2026 09:24:42} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 304 - 1.933 ms
+{Wed Feb 25 2026 09:24:43} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.535 ms
+{Wed Feb 25 2026 09:24:44} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 304 - 1.840 ms
+{Wed Feb 25 2026 09:24:45} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.907 ms
+{Wed Feb 25 2026 09:24:45} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.521 ms
+{Wed Feb 25 2026 09:24:46} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 1.435 ms
+{Wed Feb 25 2026 09:24:47} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 304 - 1.822 ms
+{Wed Feb 25 2026 09:25:21} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:25:21} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:25:21} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:25:21} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:25:23} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:25:23} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:25:23} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:25:23} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:26:16} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: undefined
+{Wed Feb 25 2026 09:26:16} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:16} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 16.657 ms
+{Wed Feb 25 2026 09:26:17} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:17} [APP 🚀] info: Selected Lawyer: 699aa540278c7da16e03b9c3 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:17} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 3.885 ms
+{Wed Feb 25 2026 09:26:17} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa540278c7da16e03b9c3
+{Wed Feb 25 2026 09:26:17} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:18} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.444 ms
+{Wed Feb 25 2026 09:26:18} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:18} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:18} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 5.064 ms
+{Wed Feb 25 2026 09:26:19} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:19} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:19} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.414 ms
+{Wed Feb 25 2026 09:26:20} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:20} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:20} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.240 ms
+{Wed Feb 25 2026 09:26:21} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:21} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:21} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.659 ms
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: Selected Lawyer: 699aa540278c7da16e03b9c3 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.223 ms
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa540278c7da16e03b9c3
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:22} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 3.031 ms
+{Wed Feb 25 2026 09:26:24} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:24} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:24} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.625 ms
+{Wed Feb 25 2026 09:26:25} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:25} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:25} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.179 ms
+{Wed Feb 25 2026 09:26:27} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:27} [APP 🚀] info: Selected Lawyer: 699aa540278c7da16e03b9c3 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:27} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.530 ms
+{Wed Feb 25 2026 09:26:28} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa540278c7da16e03b9c3
+{Wed Feb 25 2026 09:26:28} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:28} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.107 ms
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 4.399 ms
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:29} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.329 ms
+{Wed Feb 25 2026 09:26:30} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699a720525f8cdde9e665683
+{Wed Feb 25 2026 09:26:30} [APP 🚀] info: Selected Lawyer: 699aa41e278c7da16e03b9ba for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:30} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 2.366 ms
+{Wed Feb 25 2026 09:26:31} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: 699aa41e278c7da16e03b9ba
+{Wed Feb 25 2026 09:26:31} [APP 🚀] info: Selected Lawyer: 699a720525f8cdde9e665683 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:26:31} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 3.114 ms
+{Wed Feb 25 2026 09:27:53} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:27:53} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:27:53} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:27:53} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:27:56} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:27:56} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:27:56} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:27:56} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:03} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:03} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:03} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:03} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:10} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:10} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:10} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:10} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:15} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:15} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:15} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:15} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:20} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:20} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:20} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:20} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:22} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:22} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:22} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:22} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:24} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:24} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:24} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:24} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:28:31} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:28:31} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:28:31} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:28:31} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:09} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:09} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:09} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:09} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:12} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:12} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:12} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:12} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:15} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:15} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:15} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:15} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:18} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:18} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:18} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:18} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:24} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:24} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:24} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:24} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:27} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:29:27} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:29:27} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:29:27} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 09:29:53} [APP 🚀] info: Requested Random Lawyer - IP: ::ffff:10.10.7.50, ExcludedID: undefined
+{Wed Feb 25 2026 09:29:53} [APP 🚀] info: Selected Lawyer: 699aa540278c7da16e03b9c3 for IP: ::ffff:10.10.7.50
+{Wed Feb 25 2026 09:29:53} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/random-lawyer 200 - 7.686 ms
+{Wed Feb 25 2026 09:30:17} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 09:30:17} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 09:30:17} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 09:30:17} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m

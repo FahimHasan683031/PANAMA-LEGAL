@@ -7,6 +7,7 @@ import { JwtPayload } from 'jsonwebtoken'
 import { logger } from '../../../shared/logger'
 import QueryBuilder from '../../builder/QueryBuilder'
 import config from '../../../config'
+import mongoose from 'mongoose'
 
 
 // get all users
@@ -155,14 +156,18 @@ const seedAdmin = async () => {
 };
 
 // get random lawyer
-const getRandomLawyer = async () => {
-    const result = await User.aggregate([
-        {
-            $match: {
-                role: USER_ROLES.LAWYER,
-                status: USER_STATUS.ACTIVE
-            }
-        },
+const getRandomLawyer = async (excludedId?: string) => {
+    const matchStage: any = {
+        role: USER_ROLES.LAWYER,
+        status: USER_STATUS.ACTIVE
+    };
+
+    if (excludedId) {
+        matchStage._id = { $ne: new mongoose.Types.ObjectId(excludedId) };
+    }
+
+    let result = await User.aggregate([
+        { $match: matchStage },
         { $sample: { size: 1 } },
         {
             $project: {
@@ -172,8 +177,29 @@ const getRandomLawyer = async () => {
         }
     ]);
 
+    // Fallback: If no lawyer found
+    if (result.length === 0 && excludedId) {
+        result = await User.aggregate([
+            {
+                $match: {
+                    role: USER_ROLES.LAWYER,
+                    status: USER_STATUS.ACTIVE
+                }
+            },
+            { $sample: { size: 1 } },
+            {
+                $project: {
+                    password: 0,
+                    authentication: 0
+                }
+            }
+        ]);
+    }
+
     return result.length > 0 ? result[0] : null;
 };
+
+
 
 export const UserServices = {
     updateProfile,
