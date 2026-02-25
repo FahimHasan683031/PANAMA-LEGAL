@@ -7,14 +7,40 @@ import { ChatbotValidations } from './chatbot.validation';
 
 const router = express.Router();
 
-// Get chatbot categories (Open to all roles)
+// Categories
 router.get(
     '/categories',
     auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
     ChatbotController.getAllCategories
 );
 
-// Get chat history
+router.get(
+    '/categories/:id',
+    auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),
+    ChatbotController.getSingleCategory
+);
+
+router.post(
+    '/categories',
+    auth(USER_ROLES.ADMIN),
+    validateRequest(ChatbotValidations.createCategorySchema),
+    ChatbotController.createCategory
+);
+
+router.patch(
+    '/categories/:id',
+    auth(USER_ROLES.ADMIN),
+    validateRequest(ChatbotValidations.updateCategorySchema),
+    ChatbotController.updateCategory
+);
+
+router.delete(
+    '/categories/:id',
+    auth(USER_ROLES.ADMIN),
+    ChatbotController.deleteCategory
+);
+
+// History
 router.get(
     '/history',
     auth(USER_ROLES.ADMIN, USER_ROLES.CITIZEN, USER_ROLES.LAWYER, USER_ROLES.EXPERT, USER_ROLES.STUDENT),

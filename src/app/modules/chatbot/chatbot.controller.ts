@@ -35,8 +35,51 @@ const askAI = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const createCategory = catchAsync(async (req: Request, res: Response) => {
+    const result = await ChatbotService.createCategory(req.body);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: 'Category created successfully',
+        data: result,
+    });
+});
+
+const getSingleCategory = catchAsync(async (req: Request, res: Response) => {
+    const result = await ChatbotService.getSingleCategory(req.params.id);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: 'Category fetched successfully',
+        data: result,
+    });
+});
+
+const updateCategory = catchAsync(async (req: Request, res: Response) => {
+    const result = await ChatbotService.updateCategory(req.params.id, req.body);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: 'Category updated successfully',
+        data: result,
+    });
+});
+
+const deleteCategory = catchAsync(async (req: Request, res: Response) => {
+    const result = await ChatbotService.deleteCategory(req.params.id);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: 'Category deleted successfully'
+    });
+});
+
 export const ChatbotController = {
     getAllCategories,
     getChatHistory,
     askAI,
+    createCategory,
+    getSingleCategory,
+    updateCategory,
+    deleteCategory,
 };

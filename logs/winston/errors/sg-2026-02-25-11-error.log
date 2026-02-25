@@ -1,2 +1,7 @@
 {Wed Feb 25 2026 11:24:42} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 500 - 29.496 ms
 {Wed Feb 25 2026 11:27:21} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 400 - 16.385 ms
+{Wed Feb 25 2026 11:47:55} [APP 🐞] error: ::ffff:10.10.7.50 - GET /api/v1/chatbot/categories 404 - 17.797 ms
+{Wed Feb 25 2026 11:48:39} [APP 🐞] error: ::ffff:10.10.7.50 - POST /api/v1/chatbot/categories 403 - 1.873 ms
+{Wed Feb 25 2026 11:52:08} [APP 🐞] error: ::ffff:10.10.7.50 - PATCH /api/v1/chatbot/categories/699e8d4119fed68b077d8e6b 403 - 1.767 ms
+{Wed Feb 25 2026 11:53:02} [APP 🐞] error: ::ffff:10.10.7.50 - DELETE /api/v1/chatbot/categories/699e8d4119fed68b077d8e6b 404 - 5.555 ms
+{Wed Feb 25 2026 11:54:17} [APP 🐞] error: ::ffff:10.10.7.50 - DELETE /api/v1/chatbot/categories/699e8e5319fed68b077d8e74 404 - 9.142 ms

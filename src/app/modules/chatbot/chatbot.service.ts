@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import ApiError from '../../../errors/ApiError';
 import { ChatbotCategory, ChatbotHistory } from './chatbot.model';
-import { IChatMessage } from './chatbot.interface';
+import { IChatbotCategory, IChatMessage } from './chatbot.interface';
 import { getGeminiResponse } from './gemini.service';
 import mongoose from 'mongoose';
 
@@ -69,8 +69,42 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
     return aiMsg;
 };
 
+const createCategory = async (payload: IChatbotCategory) => {
+    return await ChatbotCategory.create(payload);
+};
+
+const getSingleCategory = async (id: string) => {
+    const result = await ChatbotCategory.findById(id);
+    if (!result) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'Chatbot category not found');
+    }
+    return result;
+};
+
+const updateCategory = async (id: string, payload: Partial<IChatbotCategory>) => {
+    const isExist = await ChatbotCategory.findById(id);
+    if (!isExist) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'Chatbot category not found');
+    }
+
+    return await ChatbotCategory.findByIdAndUpdate(id, payload, { new: true });
+};
+
+const deleteCategory = async (id: string) => {
+    const isExist = await ChatbotCategory.findById(id);
+    if (!isExist) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'Chatbot category not found');
+    }
+
+    return await ChatbotCategory.findByIdAndDelete(id);
+};
+
 export const ChatbotService = {
     getAllCategories,
     getChatHistory,
     askAI,
+    createCategory,
+    getSingleCategory,
+    updateCategory,
+    deleteCategory,
 };
