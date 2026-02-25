@@ -5,10 +5,9 @@ export type ISubscription = {
     user: Types.ObjectId;
     customerId: string;
     price: number;
-    plan: Types.ObjectId;
     trxId?: string;
     subscriptionId: string;
-    platform: 'apple' | 'google' | 'stripe';
+    platform: 'apple' | 'google';
     purchaseToken?: string;
     productId: string;
     status: 'expired' | 'active' | 'cancel' | 'pending';

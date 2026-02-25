@@ -16,11 +16,6 @@ const subscriptionSchema = new Schema<ISubscription, SubscriptionModel>(
             type: Number,
             required: true
         },
-        plan: {
-            type: Schema.Types.ObjectId,
-            ref: "Plan",
-            required: true
-        },
         trxId: {
             type: String,
             required: false
@@ -31,7 +26,7 @@ const subscriptionSchema = new Schema<ISubscription, SubscriptionModel>(
         },
         platform: {
             type: String,
-            enum: ["apple", "google", "stripe"],
+            enum: ["apple", "google"],
             required: true
         },
         purchaseToken: {

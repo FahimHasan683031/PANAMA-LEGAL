@@ -1,9 +1,7 @@
 import { JwtPayload } from "jsonwebtoken";
 import { ISubscription } from "./subscription.interface";
 import { Subscription } from "./subscription.model";
-import stripe from "../../../config/stripe";
 import { User } from "../user/user.model";
-import { Plan } from "../plan/plan.model";
 import QueryBuilder from "../../builder/QueryBuilder";
 import axios from "axios";
 import ApiError from "../../../errors/ApiError";
@@ -64,8 +62,6 @@ const processIAPPurchase = async (
         transactionId = payload.receipt;
     }
 
-    // Find plan by productId
-    const plan = await Plan.findOne({ productId: payload.productId });
 
     // Update User
     await User.findByIdAndUpdate(user.authId || user.id, {
@@ -77,8 +73,7 @@ const processIAPPurchase = async (
     const subscriptionData = {
         user: user.authId || user.id,
         customerId: user.authId || user.id,
-        price: plan ? plan.price : 0,
-        plan: plan ? plan._id : undefined,
+        price: 0,
         subscriptionId: transactionId,
         platform: payload.platform,
         purchaseToken: payload.receipt,

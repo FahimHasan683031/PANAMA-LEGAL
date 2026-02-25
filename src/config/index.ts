@@ -42,11 +42,5 @@ export default {
     },
     frontend_url: process.env.FRONTEND_URL,
     backend_url: process.env.BACKEND_URL,
-    stripe: {
-        stripeSecretKey: process.env.STRIPE_API_SECRET,
-        webhookSecret: process.env.WEBHOOK_SECRET,
-        paymentSuccess: process.env.SUCCESS_URL,
-        frontendUrl: process.env.FRONTEND_URL,
-    },
     gemini_api_key: process.env.GEMINI_API_KEY,
 }
