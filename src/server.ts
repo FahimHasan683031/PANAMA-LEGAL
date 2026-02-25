@@ -6,7 +6,6 @@ import config from './config'
 import { errorLogger, logger } from './shared/logger'
 import { socketHelper } from './helpers/socketHelper'
 import { UserServices } from './app/modules/user/user.service'
-import { seedChatbotCategories } from './app/modules/chatbot/chatbot.seed'
 
 process.on('uncaughtException', error => {
     errorLogger.error('UnhandledException Detected', error)
@@ -22,7 +21,6 @@ async function main() {
 
         // Seed Admin
         await UserServices.seedAdmin();
-        await seedChatbotCategories();
 
         const port =
             typeof config.port === 'number' ? config.port : Number(config.port)

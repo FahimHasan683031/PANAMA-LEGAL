@@ -81,3 +81,7 @@
 {Wed Feb 25 2026 11:54:16} [APP 🚀] info: [32m🍁 Server connected successfully[39m
 {Wed Feb 25 2026 11:54:16} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
 {Wed Feb 25 2026 11:54:22} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/categories 200 - 22.932 ms
+{Wed Feb 25 2026 11:55:52} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 11:55:52} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 11:55:52} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 11:55:52} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m

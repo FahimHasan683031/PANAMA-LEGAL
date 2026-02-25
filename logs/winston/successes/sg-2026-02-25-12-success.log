@@ -1,0 +1,34 @@
+{Wed Feb 25 2026 12:13:33} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:13:33} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:13:33} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:13:33} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:19:26} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:19:26} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:19:26} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:19:26} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:19:28} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:19:28} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:19:28} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:19:28} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:19:29} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:19:29} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:19:29} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:19:29} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:36:32} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:36:32} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:36:32} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:36:32} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:36:33} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:36:33} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:36:33} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:36:33} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:36:46} [APP 🚀] info: [32m🚀 Database connected successfully[39m
+{Wed Feb 25 2026 12:36:46} [APP 🚀] info: ℹ️ Admin already exists
+{Wed Feb 25 2026 12:36:46} [APP 🚀] info: [32m🍁 Server connected successfully[39m
+{Wed Feb 25 2026 12:36:46} [APP 🚀] info: [33m♻️  Application listening on port:5006[39m
+{Wed Feb 25 2026 12:50:02} [APP 🚀] info: [34mA user connected[39m
+{Wed Feb 25 2026 12:50:14} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/me 200 - 12.126 ms
+{Wed Feb 25 2026 12:50:33} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 4270.702 ms
+{Wed Feb 25 2026 12:50:47} [APP 🚀] info: ::ffff:10.10.7.50 - GET /api/v1/user/me 200 - 2.688 ms
+{Wed Feb 25 2026 12:50:56} [APP 🚀] info: ::ffff:10.10.7.50 - POST /api/v1/chatbot/ask 200 - 3281.254 ms
+{Wed Feb 25 2026 12:51:03} [APP 🚀] info: [31mA user disconnect[39m

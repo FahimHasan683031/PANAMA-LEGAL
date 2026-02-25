@@ -66,6 +66,13 @@ const askAI = async (userId: string, userMessage: string, initialContext?: strin
 
     await history.save();
 
+    // Emit socket event for real-time update
+    //@ts-ignore
+    const io = global.io;
+    if (io) {
+        io.emit(`getChatbotMessage::${userId}`, aiMsg);
+    }
+
     return aiMsg;
 };
 
@@ -91,7 +98,7 @@ const updateCategory = async (id: string, payload: Partial<IChatbotCategory>) =>
 };
 
 const deleteCategory = async (id: string) => {
-    const isExist = await ChatbotCategory.findById(id);
+    const isExist = await ChatbotCategory.findById(id).lean();
     if (!isExist) {
         throw new ApiError(StatusCodes.NOT_FOUND, 'Chatbot category not found');
     }
