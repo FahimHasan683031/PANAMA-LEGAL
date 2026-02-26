@@ -42,7 +42,7 @@ export const userUpdateSchema = z.object({
         suitabilityCertificate: z.array(z.string()).optional(),
 
         identityDoc: z.string().optional(),
-        technicalSpecialty: z.string().optional(),
+        specialty: z.string().optional(),
 
         university: z.string().optional(),
         currentYear: z.number().int().min(1).max(6).optional(),

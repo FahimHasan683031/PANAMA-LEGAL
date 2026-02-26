@@ -38,7 +38,7 @@ export type IUser = {
 
     // Expert specific fields
     identityDoc?: string[];
-    technicalSpecialty?: string[];
+    specialty?: string;
 
     // Student specific fields
     university?: string;

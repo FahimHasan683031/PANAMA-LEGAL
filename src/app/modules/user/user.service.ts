@@ -64,7 +64,7 @@ const updateProfile = async (
         [USER_ROLES.ADMIN]: [],
         [USER_ROLES.CITIZEN]: ['residentialArea', 'dateOfBirth', 'exactAddress'],
         [USER_ROLES.LAWYER]: ['workArea', 'identityNumber', 'suitabilityCertificate'],
-        [USER_ROLES.EXPERT]: ['identityDoc', 'technicalSpecialty'],
+        [USER_ROLES.EXPERT]: ['identityDoc', 'specialty'],
         [USER_ROLES.STUDENT]: ['university', 'currentYear', 'studentIdOrEnrollmentProof'],
     };
 

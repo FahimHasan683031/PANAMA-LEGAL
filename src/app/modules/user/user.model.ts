@@ -106,8 +106,8 @@ const UserSchema = new Schema(
             type: [String],
             default: undefined,
         },
-        technicalSpecialty: {
-            type: [String],
+        specialty: {
+            type: String,
             default: undefined,
         },
 
